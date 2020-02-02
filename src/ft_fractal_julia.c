@@ -4,8 +4,8 @@ void	ft_parametr_julia(t_fractol *p)
 {
 		p->width = WIDHT;
 		p->hight = HIGHT;
-		p->c_re = -0.8;
-		p->c_im = 0.156;
+		p->c_re = -0.7269;
+		p->c_im = 0.1889;
 		p->x_re_min = -1.5;
 		p->y_im_max = 1;
 		p->delta_x_re = 3;
@@ -58,8 +58,8 @@ void	ft_fractal_julia(t_fractol *p)
 			new_im = p->y_im_max - (double)y * p->zoom;
 
 			speed = ft_pixel_number_check(p, new_re, new_im);
-			color = ft_pixel_color_alfa(speed);
-				// color = mlx_get_color_value(p->mlx_ptr, speed * p->color);
+			// color = ft_pixel_color_alfa(speed);
+			color = mlx_get_color_value(p->mlx_ptr, speed * p->color);
 			p->draw[x + y * WIDHT] = color;
 			x += 1;
 		}

@@ -40,7 +40,6 @@ static void	ft_paint_mlx_rectangle(t_fractol *p, char *str)
 
 void	ft_paint_mandelbrota(t_fractol *p)
 {
-	// ft_bzero(p->draw, WIDHT * HIGHT * 4);
 	// ft_fractal_mandelbrota(p);
 	ft_multi_thread_mandelbrota(p);
 	mlx_put_image_to_window(p->mlx_ptr, p->win_ptr, p->img_ptr, 0, 0);

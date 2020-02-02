@@ -24,7 +24,7 @@
 # define COLOR_FON	0x0
 # define DEPTH	80
 # define ALFA	0.05
-# define NUM	300
+# define NUM	100
 # define NUM_THREAD	8
 # define STR1	"zoom + or - "
 # define STR2	"shift -> or <- UP or DOWN"

@@ -25,7 +25,9 @@ static void	zoom_mouse(int key, t_fractol *p)
 
 int		mouse_press(int button, int x, int y, t_fractol *p)
 {
-	// printf("button mouse %d\n", button);
+	double delta_y;
+	double k_wind;
+
 	if (y >= 0 && y <= (HIGHT - 1) && x >= 0 && x <= (WIDHT - 1))
 	{
 		if (p->flag != 0 && (button == 4 || button == 5 || button == 1 || button == 2)) // колесико scrol UP +, scroll DOWN -
@@ -34,7 +36,19 @@ int		mouse_press(int button, int x, int y, t_fractol *p)
 			p->mouse_y = y;
 			zoom_mouse(button, p);
 		}
-		// if (p->flag == 2 && button == 3)
+		if (p->flag == 2 && button == 3)
+		{
+			p->mouse_x = x;
+			p->mouse_y = y;
+			p->alfa_x = (double)p->mouse_x / (double)(WIDHT - 1);
+			p->alfa_y = (double)p->mouse_y / (double)(HIGHT - 1);
+
+			k_wind = (double)WIDHT / (double)HIGHT;
+			delta_y = p->delta_x_re / k_wind;
+			p->c_re = p->x_re_min + p->delta_x_re * p->alfa_x;
+			p->c_im = p->y_im_max - p->delta_x_re / k_wind * p->alfa_y;
+			ft_paint_julia(p);
+		}
 	}
 	// else if (button == 1 && (y >= 0 && y <= (HIGHT - 1)) && \
 	// 		(x >= 0 && x <= (WIDHT - 1)))
