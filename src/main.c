@@ -16,7 +16,7 @@ static void	ft_operation(t_fractol *p)
 	mlx_hook(p->win_ptr, 17, 0, close_endian, p);
 	mlx_hook(p->win_ptr, 4, 0, mouse_press, p);
 	// mlx_hook(p->win_ptr, 5, 0, mouse_release, p);
-	// mlx_hook(p->win_ptr, 6, 0, mouse_movement, p);
+	mlx_hook(p->win_ptr, 6, 0, mouse_movement, p);
 	mlx_loop(p->mlx_ptr);
 }
 
@@ -56,8 +56,8 @@ static void	ft_mlx_fractal(t_fractol *p, char *str)
 
 void	ft_paint_julia(t_fractol *p)
 {
-	ft_fractal_julia(p);
-	// ft_multi_thread_julia(p);
+	// ft_fractal_julia(p);
+	ft_multi_thread_julia(p);
 	mlx_put_image_to_window(p->mlx_ptr, p->win_ptr, p->img_ptr, 0, 0);
 	ft_operation(p);
 }

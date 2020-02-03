@@ -29,8 +29,22 @@ void	zoom_key(int key, t_fractol *p)
 		p->y0 -= (KZ_MAX / 2 * sign);
 		ft_paint_rectangle(p);
 	}
-	// else if (p->side_w > 100 || p->side_h > 100)
-		// ft_paint_rectangle(p);
+}
+
+void	color_key(int key, t_fractol *p)
+{
+	if (key == 12)
+		p->flag_color = 1;
+	else if (key == 13)
+		p->flag_color = 2;
+	else if (key == 69)
+		p->color += 3000;
+	else if (key == 69 && p->color > 10000)
+		p->color -= 2000;
+	if (p->flag == 1)
+		ft_paint_mandelbrota(p);
+	if (p->flag == 2)
+		ft_paint_julia(p);
 }
 
 int		key_press(int key, t_fractol *p)
@@ -39,17 +53,8 @@ int		key_press(int key, t_fractol *p)
 		exit(0);
 	if ((key == 24 || key == 27) && p->flag == 0)
 		zoom_key(key, p);
-	if (key == 69 || key == 78)
-	{
-		if (key == 69)
-			p->color += 5000;
-		else if (p->color > 10000)
-			p->color -= 5000;
-		if (p->flag == 1)
-			ft_paint_mandelbrota(p);
-		if (p->flag == 2)
-			ft_paint_julia(p);
-	}
+	if (key == 12 || key == 13 || key == 69 || key == 78)
+		color_key(key, p);
 	if (key == 49)
 	{
 		if (p->flag == 1)
@@ -63,5 +68,6 @@ int		key_press(int key, t_fractol *p)
 			ft_paint_julia(p);
 		}
 	}
+	
 	return (0);
 }
