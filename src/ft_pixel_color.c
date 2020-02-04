@@ -18,8 +18,6 @@ int			ft_pixel_color(int color1, int color2, int step, int n)
 	red = color_gradient((color1 >> 16) & 0xFF, (color2 >> 16) & 0xFF, percent);
 	green = color_gradient((color1 >> 8) & 0xFF, (color2 >> 8) & 0xFF, percent);
 	blue = color_gradient(color1 & 0xFF, color2 & 0xFF, percent);
-
-
 	return ((red << 16) | (green << 8) | blue);
 }
 
@@ -33,15 +31,13 @@ int			ft_pixel_color(int color1, int color2, int step, int n)
 // 	return ((pixel.red << 16) | (pixel.green << 8) | pixel.blue);
 // }
 
-int			ft_pixel_color_alfa(double speed)
+int			ft_pixel_color_alfa(double max_speed, double speed)
 {
 	double	per;
-	double	max_speed;
 	int		red;
 	int		green;
 	int		blue;
 
-	max_speed = 1.0 * NUM;
 	if (speed <= max_speed / 2)
 		per = speed / (max_speed * 0.5);
 	else if (speed <= max_speed * 0.75)
@@ -54,10 +50,5 @@ int			ft_pixel_color_alfa(double speed)
 	red = (int)(9 * (1 - per) * pow(per, 3) * 255);
 	green = (int)(15 * pow((1 - per), 2) * pow(per, 2) * 255);
 	blue = (int)(8.5 * pow((1 - per), 3) * per * 255);
-
-	// per = speed / max_speed;
-	// red = (int)(9 * pow(per, 3) * 255);
-	// green = (int)(15 * pow(per, 2) * 255);
-	// blue = (int)(15 * per * 255);
 	return ((red << 16) | (green << 8) | blue);
 }

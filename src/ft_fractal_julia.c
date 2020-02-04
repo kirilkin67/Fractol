@@ -9,6 +9,7 @@ void	ft_parametr_julia(t_fractol *p)
 	p->x_re_min = -1.5;
 	p->y_im_max = 1;
 	p->delta_x_re = 3;
+	p->num = NUM;
 	p->color = COLOR;
 	p->flag = 2;
 	p->flag_color = 1;
@@ -28,7 +29,7 @@ int		ft_pixel_number_check(void *p, double new_re, double new_im)
 	z_im = new_im;
 	orbit = pow(new_re, 2) + pow(new_im, 2);
 	data->n = 0;
-	while (data->n < NUM && orbit <= 4)
+	while (data->n < data->num && orbit <= 4)
 	{
 		tmp = z_re;
 		z_re = z_re * z_re - z_im * z_im + data->c_re;
@@ -84,7 +85,7 @@ void	*thread_julia(void *function)
 			data->new_im = data->y_im_max - data->y_start * zoom;
 			speed = ft_pixel_number_check(data, data->new_re, data->new_im);
 			if (data->flag_color == 1)
-				color = ft_pixel_color_alfa(speed);
+				color = ft_pixel_color_alfa(data->num, speed);
 			else
 				color = mlx_get_color_value(data->mlx_ptr, speed * data->color);
 			data->draw_t[0][data->x + data->y_start * WIDHT] = color;
@@ -111,6 +112,7 @@ void	ft_multi_thread_julia(t_fractol *p)
 		data[n].delta_x_re = p->delta_x_re;
 		data[n].x_re_min = p->x_re_min;
 		data[n].y_im_max = p->y_im_max;
+		data[n].num = p->num;
 		data[n].color = p->color;
 		data[n].flag_color = p->flag_color;
 		data[n].mlx_ptr = p->mlx_ptr;

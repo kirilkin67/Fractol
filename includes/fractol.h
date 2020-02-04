@@ -22,9 +22,9 @@
 # define COLOR1	0xFF00
 # define COLOR2	0x800080
 # define COLOR_FON	0x0
-# define DEPTH	80
+# define DEPTH	100
 # define ALFA	0.05
-# define NUM	300
+# define NUM	100
 # define NUM_THREAD	8
 
 typedef struct	s_dot
@@ -51,16 +51,17 @@ typedef struct	s_data
 	double		y_im_max;
 	double		c_re;
 	double		c_im;
+	int			num;
 	void		*mlx_ptr;
 	int			**draw_t;
 }				t_data;
 
-typedef struct s_color
-{
-	int			red;
-	int			green;
-	int			blue;
-}				t_color;
+// typedef struct s_color
+// {
+// 	int			red;
+// 	int			green;
+// 	int			blue;
+// }				t_color;
 
 typedef struct	s_draw
 {
@@ -99,16 +100,17 @@ typedef struct	s_fractol
 	double		new_re;
 	double		new_im;
 	double		x_re_min;
-	double		x_re_max;
 	double		y_im_max;
 	double		delta_x_re;
+	int			num;
+	// double		x_re_max;
 	// double		zoom;
 	double		angle;
 	double		k_look;
-	double		k_zoom;
+	// double		k_zoom;
 	int			color;
-	int			shift;
-	double		hgt;
+	// int			shift;
+	// double		hgt;
 	int			x0;
 	int			y0;
 	int			depth;
@@ -118,12 +120,9 @@ typedef struct	s_fractol
 	int			flag;
 	int			flag_color;
 	int			n;
-	int			m;
-
 }				t_fractol;
 
 void			ft_drawing_line(t_fractol *p, int *dot1, int *dot2);
-void			ft_draw_line(t_fractol *p, int x1, int y1, int x2, int y2);
 void			ft_drawing_line_dot(t_fractol *p, t_dot *dot1, t_dot *dot2);
 void			ft_drawing_fon(t_fractol *p);
 int				close_endian(void *param);
@@ -133,17 +132,16 @@ int				mouse_press(int button, int x, int y, t_fractol *p);
 int				mouse_movement(int x, int y, t_fractol *p);
 // void			zoom_key(int key, t_fractol *p);
 // void			zoom_mouse(int key, t_fractol *p);
-// void			look(int key, t_fractol *p);
 void			ft_exit(char *str);
+void			ft_operation(t_fractol *p);
 int				ft_pixel_color(int color1, int color2, int step, int n);
-int				ft_pixel_color_alfa(double speed);
-int				ft_pixel_color_betta(int dwell);
+int				ft_pixel_color_alfa(double max_speed, double speed);
 void			ft_operation_key(t_fractol *p);
 void			ft_point_coordinates(t_fractol *p);
 void			ft_parametr_rectangle(t_fractol *p, char *s1, char *s2);
 void			ft_paint_rectangle(t_fractol *p);
 void			ft_fractal_rectangle(t_fractol *p, int rectangle[][2]);
-int				ft_complex_number_check(double c_re, double c_im);
+int				ft_complex_number_check(int num, double c_re, double c_im);
 void			ft_parametr_mandelbrota(t_fractol *p);
 void			ft_fractal_mandelbrota(t_fractol *p);
 void			ft_paint_mandelbrota(t_fractol *p);
