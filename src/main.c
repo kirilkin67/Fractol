@@ -6,7 +6,7 @@
 /*   By: wrhett <wrhett@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 18:36:00 by wrhett            #+#    #+#             */
-/*   Updated: 2020/02/07 19:32:31 by wrhett           ###   ########.fr       */
+/*   Updated: 2020/02/10 12:37:34 by wrhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		ft_operation(t_fractol *p)
 	mlx_hook(p->win_ptr, 17, 0, close_endian, p);
 	mlx_hook(p->win_ptr, 4, 0, mouse_press, p);
 	mlx_hook(p->win_ptr, 6, 0, mouse_movement, p);
-	mlx_loop(p->mlx_ptr);
+	// mlx_loop(p->mlx_ptr);
 }
 
 static void	ft_mlx_rectangle(t_fractol *p, char *str)
@@ -48,21 +48,22 @@ static void	ft_mlx_rectangle(t_fractol *p, char *str)
 int			main(int argc, char **argv)
 {
 	t_fractol	paint;
+	t_fractol	paint1;
+	void		*mlx_ptr;
 
 	if (argc == 2)
-		ft_paint_fractal(&paint, *(argv + 1));
-	// if (argc == 3)
-	// {
-	// 	ft_mlx_fractal(&paint[0], *(argv + 1));
-	// 	ft_mlx_fractal(&paint[1], *(argv + 2));
-	// 	ft_paint_fractal(&paint[0], *(argv + 1));
-	// 	ft_paint_fractal(&paint[1], *(argv + 2));
-	// 	ft_operation(&paint[0]);
-	// 	// mlx_loop(paint[0].mlx_ptr);
-	// 	ft_operation(&paint[1]);
-	// 	mlx_loop(paint[1].mlx_ptr);
-		
-	// }
+	{
+		mlx_ptr = mlx_init();
+		ft_paint_fractal(mlx_ptr, &paint, *(argv + 1));
+		mlx_loop(mlx_ptr);
+	}
+	if (argc == 3)
+	{
+		mlx_ptr = mlx_init();
+		ft_paint_fractal(mlx_ptr, &paint, *(argv + 1));
+		ft_paint_fractal(mlx_ptr, &paint1, *(argv + 2));
+		mlx_loop(mlx_ptr);
+	}
 	if (argc == 4 && (ft_strcmp(argv[1], "Rectangle") == 0) && \
 		ft_atoi(argv[2]) > 99 && ft_atoi(argv[2]) < 1001 && \
 		ft_atoi(argv[3]) > 99 && ft_atoi(argv[3]) < 1001)

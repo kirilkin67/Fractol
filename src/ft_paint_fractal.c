@@ -6,7 +6,7 @@
 /*   By: wrhett <wrhett@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 18:33:14 by wrhett            #+#    #+#             */
-/*   Updated: 2020/02/07 19:30:29 by wrhett           ###   ########.fr       */
+/*   Updated: 2020/02/10 12:01:59 by wrhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,24 @@ void		ft_paint_rectangle(t_fractol *p)
 
 void		ft_mlx_fractal(t_fractol *p, char *str)
 {
-	p->mlx_ptr = mlx_init();
+	// p->mlx_ptr = mlx_init();
 	p->win_ptr = mlx_new_window(p->mlx_ptr, WIDHT, HIGHT, str);
 	p->img_ptr = mlx_new_image(p->mlx_ptr, WIDHT, HIGHT);
 	p->draw = (int *)mlx_get_data_addr(p->img_ptr, &p->bpp, \
 				&p->size_line, &p->endian);
 }
 
-void		ft_paint_fractal(t_fractol *p, char *str)
+void		ft_paint_fractal(void *mlx_ptr, t_fractol *p, char *str)
 {
+	p->mlx_ptr = mlx_ptr;
+	
 	if ((ft_strcmp(str, "Mandelbrota") == 0))
 	{
 		ft_mlx_fractal(p, str);
 		ft_parametr_mandelbrota(p);
 		ft_paint_mandelbrota(p);
 	}
-	if ((ft_strcmp(str, "Julia") == 0))
+	else if ((ft_strcmp(str, "Julia") == 0))
 	{
 		ft_mlx_fractal(p, str);
 		ft_parametr_julia(p);

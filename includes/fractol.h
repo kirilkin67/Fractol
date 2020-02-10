@@ -37,26 +37,26 @@ typedef struct	s_dot
 	int			color;
 }				t_dot;
 
-typedef struct	s_data
-{
-	int			n;
-	int			x;
-	int			y_start;
-	int			y_end;
-	int			color;
-	int			flag_color;
-	double		zoom;
-	double		delta_x_re;
-	double		new_re;
-	double		new_im;
-	double		x_re_min;
-	double		y_im_max;
-	double		c_re;
-	double		c_im;
-	int			num;
-	void		*mlx_ptr;
-	int			**draw_t;
-}				t_data;
+// typedef struct	s_data
+// {
+// 	int			n;
+// 	int			x;
+// 	int			y_start;
+// 	int			y_end;
+// 	int			color;
+// 	int			flag_color;
+// 	double		zoom;
+// 	double		delta_x_re;
+// 	double		new_re;
+// 	double		new_im;
+// 	double		x_re_min;
+// 	double		y_im_max;
+// 	double		c_re;
+// 	double		c_im;
+// 	int			num;
+// 	void		*mlx_ptr;
+// 	int			**draw_t;
+// }				t_data;
 
 typedef struct s_paint
 {
@@ -156,6 +156,6 @@ void			ft_fractal_julia(t_fractol *p);
 void			ft_paint_julia(t_fractol *p);
 void			ft_multi_thread_julia(t_fractol *paint);
 void			ft_multi_thread_mandelbrota(t_fractol *paint);
-void			ft_paint_fractal(t_fractol *p, char *str);
+void			ft_paint_fractal(void *mlx_ptr, t_fractol *p, char *str);
 
 #endif
