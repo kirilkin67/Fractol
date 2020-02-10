@@ -67,8 +67,9 @@ int		mouse_movement(int x, int y, t_fractol *p)
 	{
 		if (p->flag == 2 && p->mouse_key == -1)
 		{
-			p->c_re = -0.8 + (double)x / (double)(WIDHT - 1) / 4;
-			p->c_im = 0.6 - (double)y / (double)(HIGHT - 1) / 2;
+			p->c_re = (double)(x - (WIDHT - 1)/2) / (double)(WIDHT - 1) * 2;
+			p->c_im = (double)((HIGHT - 1)/2 - y) / (double)(HIGHT - 1);
+			// printf("C_re- %f, C_im- %f\n", p->c_re, p->c_im);
 			ft_paint_julia(p);
 		}
 	// if (p->mouse_key == 1)

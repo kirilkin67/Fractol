@@ -36,10 +36,9 @@ void	ft_drawing_line(t_fractol *p, int *dot1, int *dot2)
 
 	drawing_data(&data, dot1, dot2);
 	data.n = 0;
-	while (data.tmp[0] != dot2[0] || data.tmp[1] != dot2[1]) //(p->n++ <= p->step)
+	while (data.tmp[0] != dot2[0] || data.tmp[1] != dot2[1])//(p->n++ <= p->step)
 	{
 		data.color = ft_pixel_color(COLOR1, COLOR2, data.step, data.n);
-		// data.color = mlx_get_color_value(p->mlx_ptr, (float)data.n / (float)data.step * 400000);
 		if (data.tmp[0] >= 0 && data.tmp[0] <= (p->width - 1) && \
 				data.tmp[1] >= 0 && data.tmp[1] <= (p->hight - 1))
 			p->draw[data.tmp[0] + data.tmp[1] * p->width] = data.color;

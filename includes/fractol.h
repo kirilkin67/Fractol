@@ -14,7 +14,7 @@
 # define ABS(Value) (Value > 0 ? Value : -Value)
 # define WIDHT	1800
 # define HIGHT	1200
-# define KZ	10
+# define MAX_ZOOM	20000
 # define KZ_MAX	20
 # define K_ZOOM	1.2
 # define K_LOOK 0.087266462599716
@@ -26,6 +26,8 @@
 # define ALFA	0.05
 # define NUM	100
 # define NUM_THREAD	8
+# define STR1	"zoom: Mouse"
+# define STR2	"scrol UP +, scroll DOWN -"
 
 typedef struct	s_dot
 {
@@ -56,12 +58,16 @@ typedef struct	s_data
 	int			**draw_t;
 }				t_data;
 
-// typedef struct s_color
-// {
-// 	int			red;
-// 	int			green;
-// 	int			blue;
-// }				t_color;
+typedef struct s_paint
+{
+	void		*mlx_ptr;
+	void		*win_ptr;
+	void		*img_ptr;
+	int			*draw;
+	int			bpp;
+	int			size_line;
+	int			endian;
+}				t_paint;
 
 typedef struct	s_draw
 {
@@ -92,6 +98,7 @@ typedef struct	s_fractol
 	int			side_w;
 	int			side_h;
 	int			side_z;
+	int			sign;
 	int			mouse_key;
 	int			mouse_x;
 	int			mouse_y;
@@ -102,15 +109,14 @@ typedef struct	s_fractol
 	double		x_re_min;
 	double		y_im_max;
 	double		delta_x_re;
+	double		zoom;
+	int			x;
+	int			y_start;
+	int			y_end;
 	int			num;
-	// double		x_re_max;
-	// double		zoom;
 	double		angle;
 	double		k_look;
-	// double		k_zoom;
 	int			color;
-	// int			shift;
-	// double		hgt;
 	int			x0;
 	int			y0;
 	int			depth;
@@ -130,12 +136,12 @@ int				key_press(int key, t_fractol *p);
 int				mouse_press(int button, int x, int y, t_fractol *p);
 // int				mouse_release(int button, int x, int y, t_fractol *p);
 int				mouse_movement(int x, int y, t_fractol *p);
-// void			zoom_key(int key, t_fractol *p);
-// void			zoom_mouse(int key, t_fractol *p);
-void			ft_exit(char *str);
+void			ft_mlx_fractal(t_fractol *p, char *str);
+void			ft_exit(void);
 void			ft_operation(t_fractol *p);
 int				ft_pixel_color(int color1, int color2, int step, int n);
 int				ft_pixel_color_alfa(double max_speed, double speed);
+int				ft_pixel_color_betta(t_fractol *data, int max_speed, int speed);
 void			ft_operation_key(t_fractol *p);
 void			ft_point_coordinates(t_fractol *p);
 void			ft_parametr_rectangle(t_fractol *p, char *s1, char *s2);
@@ -148,7 +154,8 @@ void			ft_paint_mandelbrota(t_fractol *p);
 void			ft_parametr_julia(t_fractol *p);
 void			ft_fractal_julia(t_fractol *p);
 void			ft_paint_julia(t_fractol *p);
-void			ft_multi_thread_julia(t_fractol *p);
-void			ft_multi_thread_mandelbrota(t_fractol *p);
+void			ft_multi_thread_julia(t_fractol *paint);
+void			ft_multi_thread_mandelbrota(t_fractol *paint);
+void			ft_paint_fractal(t_fractol *p, char *str);
 
 #endif

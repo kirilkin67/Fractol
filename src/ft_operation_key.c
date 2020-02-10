@@ -2,26 +2,30 @@
 
 void	zoom_key(int key, t_fractol *p)
 {
-	int sign;
-
-	sign = (key == 27) ? -1 : 1;
-	if (p->side_w >= 10 || p->side_h >= 10)
+	p->sign = (key == 27) ? -1 : 1;
+	if ((p->side_w >= 20 && p->side_w <= MAX_ZOOM) || \
+		(p->side_h >= 20 && p->side_h <= MAX_ZOOM))
 	{
-	p->side_w += (KZ_MAX * sign);
-	p->side_h += (KZ_MAX * sign);
-	p->x0 -= (KZ_MAX / 2 * sign);
-	p->y0 -= (KZ_MAX / 2 * sign);
-	p->k_look += (K_LOOK  * sign);
-	p->depth = DEPTH;
+		p->side_w += (KZ_MAX * p->sign);
+		p->side_h += (KZ_MAX * p->sign);
+		p->x0 -= (KZ_MAX / 2 * p->sign);
+		p->y0 -= (KZ_MAX / 2 * p->sign);
+		p->k_look += (K_LOOK * p->sign);
+		p->depth = DEPTH;
+		ft_paint_rectangle(p);
 	}
-	else if (key == 24)
+	else if ((p->side_w < 20 || p->side_h < 20) && key == 24)
 	{
-		p->side_w = 10;
-		p->side_h = 10;
-		p->x0 -= (KZ_MAX / 2 * sign);
-		p->y0 -= (KZ_MAX / 2 * sign);
+		p->side_w = 20;
+		p->side_h = 20;
+		p->x0 -= (KZ_MAX / 2 * p->sign);
+		p->y0 -= (KZ_MAX / 2 * p->sign);
 	}
-	ft_paint_rectangle(p);
+	else if ((p->side_w > MAX_ZOOM || p->side_h > MAX_ZOOM) && key == 27)
+	{
+		p->side_w = MAX_ZOOM;
+		p->side_h = MAX_ZOOM;
+	}
 }
 
 void	color_key(int key, t_fractol *p)

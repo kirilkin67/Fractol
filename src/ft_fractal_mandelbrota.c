@@ -37,43 +37,43 @@ int		ft_complex_number_check(int num, double c_re, double c_im)
 	return (n);
 }
 
-void	ft_fractal_mandelbrota(t_fractol *p)
-{
-	double	zoom;
-	int		speed;
-	int		color;
-	int		x;
-	int		y;
+// void	ft_fractal_mandelbrota(t_fractol *p)
+// {
+// 	double	zoom;
+// 	int		speed;
+// 	int		color;
+// 	int		x;
+// 	int		y;
 
-	zoom = p->delta_x_re / p->width;
-	y = 0;
-	while (y < p->hight)
-	{
-		x = 0;
-		while (x < p->width)
-		{
-			p->c_re = p->x_re_min + x * zoom;
-			p->c_im = p->y_im_max - y * zoom;
-			speed = ft_complex_number_check(p->num ,p->c_re, p->c_im);
-			if (speed == NUM)
-				p->color = 0x0;
-			else
-				// color = ft_pixel_color_alfa(speed);
-				color = mlx_get_color_value(p->mlx_ptr, speed * COLOR);
-			p->draw[x + y * WIDHT] = color;
-			x += 1;
-		}
-		y += 1;
-	}
-}
+// 	zoom = p->delta_x_re / p->width;
+// 	y = 0;
+// 	while (y < p->hight)
+// 	{
+// 		x = 0;
+// 		while (x < p->width)
+// 		{
+// 			p->c_re = p->x_re_min + x * zoom;
+// 			p->c_im = p->y_im_max - y * zoom;
+// 			speed = ft_complex_number_check(p->num ,p->c_re, p->c_im);
+// 			if (speed == NUM)
+// 				p->color = 0x0;
+// 			else
+// 				color = ft_pixel_color_alfa(p->num, speed);
+// 				// color = mlx_get_color_value(p->mlx_ptr, speed * COLOR);
+// 			p->draw[x + y * WIDHT] = color;
+// 			x += 1;
+// 		}
+// 		y += 1;
+// 	}
+// }
 
 void	*thread_mandelbrota(void *function)
 {
 	int		speed;
 	int		color;
-	t_data	*data;
+	t_fractol	*data;
 
-	data = (t_data *)function;
+	data = (t_fractol *)function;
 	data->zoom = data->delta_x_re / WIDHT;
 	while (data->y_start < data->y_end)
 	{
@@ -86,8 +86,8 @@ void	*thread_mandelbrota(void *function)
 			if (data->flag_color == 1)
 				color = ft_pixel_color_alfa(data->num, speed);
 			else if (data->flag_color == 2)
-				color = mlx_get_color_value(data->mlx_ptr, speed * data->color);
-			data->draw_t[0][data->x + data->y_start * WIDHT] = color;
+				color = ft_pixel_color_betta(data, data->num, speed);
+			data->draw[data->x + data->y_start * WIDHT] = color;
 			data->x += 1;
 		}
 		data->y_start += 1;
@@ -95,25 +95,18 @@ void	*thread_mandelbrota(void *function)
 	return (NULL);
 }
 
-void	ft_multi_thread_mandelbrota(t_fractol *p)
+void	ft_multi_thread_mandelbrota(t_fractol *paint)
 {
 	pthread_t	id[NUM_THREAD];
-	t_data		data[NUM_THREAD];
+	t_fractol	data[NUM_THREAD];
 	int			n;
 
 	n = 0;
 	while (n < NUM_THREAD)
 	{
+		data[n] = *paint;
 		data[n].y_start = n * HIGHT / NUM_THREAD;
 		data[n].y_end = (n + 1) * HIGHT / NUM_THREAD;
-		data[n].delta_x_re = p->delta_x_re;
-		data[n].x_re_min = p->x_re_min;
-		data[n].y_im_max = p->y_im_max;
-		data[n].num = p->num;
-		data[n].color = p->color;
-		data[n].flag_color = p->flag_color;
-		data[n].mlx_ptr = p->mlx_ptr;
-		data[n].draw_t = &p->draw;
 		pthread_create(&id[n], NULL, thread_mandelbrota, &data[n]);
 		n += 1;
 	}
@@ -123,4 +116,5 @@ void	ft_multi_thread_mandelbrota(t_fractol *p)
 		pthread_join(id[n], NULL);
 		n += 1;
 	}
+	// mlx_put_image_to_window(p->mlx_ptr, p->win_ptr, p->img_ptr, 0, 0);
 }

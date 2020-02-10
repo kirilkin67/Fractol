@@ -52,3 +52,14 @@ int			ft_pixel_color_alfa(double max_speed, double speed)
 	blue = (int)(8.5 * pow((1 - per), 3) * per * 255);
 	return ((red << 16) | (green << 8) | blue);
 }
+
+int		ft_pixel_color_betta(t_fractol *data, int max_speed, int speed)
+{
+	int	color;
+
+	if (speed == max_speed)
+		color = 0x0;
+	else
+		color = mlx_get_color_value(data->mlx_ptr, speed * data->color);
+	return (color);
+}

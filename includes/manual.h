@@ -9,6 +9,8 @@
 # define STR6	"rotation NUM LOK"
 # define STR7	"axis X  key2 and key8"
 # define STR8	"axis Y  key1 and key3"
-# define STR9	"axis Z  key4 and key6" scrol UP +, scroll DOWN -
+# define STR9	"axis Z  key4 and key6"
+# define STR10	"zoom: Mouse"
+# define STR11	"scrol UP +, scroll DOWN -"
 
 #endif
