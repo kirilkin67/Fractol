@@ -85,30 +85,3 @@ void	ft_multi_thread_julia(t_fractol *paint)
 	while (n--)
 		pthread_join(id[n], NULL);
 }
-
-// void	ft_fractal_julia(t_fractol *p)
-// {
-// 	int		speed;
-// 	int		color;
-// 	double	zoom;
-// 	int x;
-// 	int y;
-
-// 	zoom = p->delta_x_re / p->width;
-// 	y = 0;
-// 	while (y < p->hight)
-// 	{
-// 		x = 0;
-// 		while (x < p->width)
-// 		{
-// 			p->new_re = p->x_re_min + (double)x * zoom;
-// 			p->new_im = p->y_im_max - (double)y * zoom;
-// 			speed = ft_pixel_number_check(p, p->new_re, p->new_im);
-// 			color = ft_pixel_color_alfa(speed);
-// 			// color = mlx_get_color_value(p->mlx_ptr, speed * p->color);
-// 			p->draw[x + y * WIDHT] = color;
-// 			x += 1;
-// 		}
-// 		y += 1;
-// 	}
-// }

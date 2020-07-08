@@ -3,9 +3,11 @@ NAME = fractol
 CC = gcc
 
 SRC_DIR = ./src/
-SRC_LIST = main.c ft_drawing_line.c ft_pixel_color.c ft_operation_key.c \
-			ft_operation_mouse.c ft_paint_fractal.c ft_fractal_julia.c \
-			ft_fractal_rectangle.c ft_fractal_mandelbrota.c
+SRC_LIST = main.c ft_paint_fractal.c \
+	ft_drawing_line.c ft_fractal_rectangle.c \
+	ft_fractal_julia.c ft_fractal_mandelbrota.c \
+	ft_pixel_color.c \
+	ft_operation_key.c ft_operation_mouse.c
 
 SRC = $(addprefix $(SRC_DIR), $(SRC_LIST))
 
@@ -14,25 +16,31 @@ OBJECTS_LIST = $(patsubst %.c, %.o, $(SRC_LIST))
 OBJECTS = $(addprefix $(OBJECTS_DIR), $(OBJECTS_LIST))
 
 HEADER_DIR = ./includes/
-HEADER_LIST = fractol.h error.h
+HEADER_LIST = fractol.h error.h manual.h key_linux.h key_macos.h
 HEADER = $(addprefix $(HEADER_DIR), $(HEADER_LIST))
 
-INCLUDES = -I$(HEADER_DIR) -I$(LIBFT_DIR)
+INCLUDES = -I $(HEADER_DIR) -I $(LIBFT_DIR)
 
-LIBFT = libft.a
-LIBFT_DIR = ../libft/
+LIBFT = $(LIBFT_DIR)libft.a
+LIBFT_DIR = ./libft/
+LIBRARIES = $(LIBFT) $(MLX)
 
-MLX = -L minilibx -lmlx -framework OpenGL -framework AppKit
+ifeq ($(OS), Linux)
+	MLX_DIR = ./minilibx/
+	MLX = -L ./minilibx/ -lmlx -lXext -lX11 -lm -lpthread -lz
+else
+	MLX_DIR = ./minilibx_macos/
+	MLX = -L ./minilibx_macos/ -lmlx -framework OpenGL -framework AppKit
+endif
 
 FLAGS = -Wall -Wextra -Werror -std=c99 -O3
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re FAKE
 
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJECTS_DIR) $(OBJECTS)
-		@$(CC) $(FLAGS) -o $(NAME) $(OBJECTS) -I$(HEADER_DIR) \
-		-L $(LIBFT_DIR) -lft $(MLX)
+		@$(CC) $(FLAGS) -o $(NAME) $(OBJECTS) $(LIBRARIES)
 		@echo "\033[32m$(NAME): was created\033[0m"
 
 $(OBJECTS_DIR):
@@ -42,8 +50,9 @@ $(OBJECTS_DIR):
 $(OBJECTS_DIR)%.o: $(SRC_DIR)%.c $(HEADER)
 		@$(CC) $(FLAGS) -c $(INCLUDES) -o $@ $<
 
-$(LIBFT):
+$(LIBFT): FAKE
 		@$(MAKE) -C $(LIBFT_DIR)
+		@$(MAKE) -C $(MLX_DIR)
 
 clean:
 		@rm -rf $(OBJECTS_DIR)
@@ -54,6 +63,7 @@ fclean: clean
 		@$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
+
 # minilibx_macos/libmlx.a -framework OpenGL -framework AppKit
 # -L minilibx -lmlx -framework OpenGL -framework AppKit
 # INCLUDES = -I$(HEADERS_DIRECTORY) -I$(LIBFT_HEADERS) -I$(MINILIBX_HEADERS)

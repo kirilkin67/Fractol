@@ -87,35 +87,4 @@ void	ft_multi_thread_mandelbrota(t_fractol *paint)
 		pthread_join(id[n], NULL);
 		n += 1;
 	}
-	// mlx_put_image_to_window(p->mlx_ptr, p->win_ptr, p->img_ptr, 0, 0);
 }
-
-// void	ft_fractal_mandelbrota(t_fractol *p)
-// {
-// 	double	zoom;
-// 	int		speed;
-// 	int		color;
-// 	int		x;
-// 	int		y;
-
-// 	zoom = p->delta_x_re / p->width;
-// 	y = 0;
-// 	while (y < p->hight)
-// 	{
-// 		x = 0;
-// 		while (x < p->width)
-// 		{
-// 			p->c_re = p->x_re_min + x * zoom;
-// 			p->c_im = p->y_im_max - y * zoom;
-// 			speed = ft_complex_number_check(p->num ,p->c_re, p->c_im);
-// 			if (speed == NUM)
-// 				p->color = 0x0;
-// 			else
-// 				color = ft_pixel_color_alfa(p->num, speed);
-// 				// color = mlx_get_color_value(p->mlx_ptr, speed * COLOR);
-// 			p->draw[x + y * WIDHT] = color;
-// 			x += 1;
-// 		}
-// 		y += 1;
-// 	}
-// }

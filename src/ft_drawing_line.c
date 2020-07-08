@@ -57,37 +57,6 @@ void	ft_drawing_line(t_fractol *p, int *dot1, int *dot2)
 	}
 }
 
-// void	ft_draw_line(t_fractol *p, int x1, int y1, int x2, int y2)
-// {
-// 	t_draw data;
-
-// 	data.deltax = ABS((x2 - x1));
-// 	data.deltay = ABS((y2 - y1));
-// 	data.step = (data.deltax >= data.deltay) ? data.deltax : data.deltay;
-// 	data.sign_x = x1 < x2 ? 1 : -1;
-// 	data.sign_y = y1 < y2 ? 1 : -1;
-// 	data.error = data.deltax - data.deltay;
-// 	data.n = 0;
-// 	while (x1 != x2 || y1 != y2)
-// 	{
-// 		data.color = ft_pixel_color(COLOR1, COLOR2, data.step, data.n);
-// 		if (x1 >= 0 && x1 <= (p->width - 1) && y1 >= 0 && y1 <= (p->hight - 1))
-// 			p->draw[x1 + y1 * p->width] = data.color;
-// 		data.error2 = data.error * 2;
-// 		if (data.error2 > -data.deltay) 
-// 		{
-// 			data.error -= data.deltay;
-// 			x1 += data.sign_x;
-// 		}
-// 		if (data.error2 < data.deltax)
-// 		{
-// 			data.error += data.deltax;
-// 			y1 += data.sign_y;
-// 		}
-// 		p->n += 1;
-// 	}
-// }
-
 void	ft_drawing_line_dot(t_fractol *p, t_dot *dot1, t_dot *dot2)
 {
 	t_dot	tmp;

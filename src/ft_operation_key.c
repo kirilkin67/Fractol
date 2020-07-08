@@ -83,15 +83,15 @@ int		key_press(int key, t_fractol *p)
 	if (key == 69 || key == 78)
 		iteration_key(key, p);
 	if (key == 125 || key == 126 || key == 123 || key == 124)
-		shift_key(key, p); 
-	if (key == 49)
+		shift_key(key, p);
+	if (key == 49 || key == KEY_J || key == KEY_M)
 	{
-		if (p->flag == 1)
+		if ((p->flag == 1 && key == 49) || key == KEY_M)
 		{
 			ft_parametr_mandelbrota(p);
 			ft_paint_mandelbrota(p);
 		}
-		if (p->flag == 2)
+		if ((p->flag == 2 && key == 49) || key == KEY_J)
 		{
 			ft_parametr_julia(p);
 			ft_paint_julia(p);

@@ -6,14 +6,20 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
-# include <mlx.h>
 # include <pthread.h>
-// # include <OpenCL/opencl.h>
-# include "../../libft/libft.h"
+# include "../minilibx_macos/mlx.h"
+# include "../minilibx/mlx.h"
+# include "../libft/libft.h"
 # include "error.h"
-# define ABS(Value) (Value > 0 ? Value : -Value)
+# include "manual.h"
+# ifdef __linux__
+#  include "key_linux.h"
+# else
+#  include "key_macos.h"
+# endif
+# define ABS(Value) ((Value) > 0 ? (Value) : -(Value))
 # define WIDHT	1800
-# define HIGHT	1200
+# define HIGHT	(WIDHT * 2 / 3)
 # define MAX_ZOOM	20000
 # define KZ_MAX	20
 # define K_ZOOM	1.2
@@ -26,8 +32,6 @@
 # define ALFA	0.05
 # define NUM	100
 # define NUM_THREAD	8
-# define STR1	"zoom: Mouse"
-# define STR2	"scrol UP +, scroll DOWN -"
 
 typedef struct	s_dot
 {
@@ -134,7 +138,6 @@ void			ft_drawing_fon(t_fractol *p);
 int				close_endian(void *param);
 int				key_press(int key, t_fractol *p);
 int				mouse_press(int button, int x, int y, t_fractol *p);
-// int				mouse_release(int button, int x, int y, t_fractol *p);
 int				mouse_movement(int x, int y, t_fractol *p);
 void			ft_mlx_fractal(t_fractol *p, char *str);
 void			ft_exit(void);
@@ -157,5 +160,7 @@ void			ft_paint_julia(t_fractol *p);
 void			ft_multi_thread_julia(t_fractol *paint);
 void			ft_multi_thread_mandelbrota(t_fractol *paint);
 void			ft_paint_fractal(void *mlx_ptr, t_fractol *p, char *str);
+
+
 
 #endif

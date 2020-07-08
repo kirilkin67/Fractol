@@ -21,16 +21,6 @@ int			ft_pixel_color(int color1, int color2, int step, int n)
 	return ((red << 16) | (green << 8) | blue);
 }
 
-// static int	color_alfa(double per)
-// {
-// 	t_color	pixel;
-
-// 	pixel.red = (int)(9 * (1 - per) * pow(per, 3) * 255);
-// 	pixel.green = (int)(15 * pow((1 - per), 2) * pow(per, 2) * 255);
-// 	pixel.blue = (int)(8.5 * pow((1 - per), 3) * per * 255);
-// 	return ((pixel.red << 16) | (pixel.green << 8) | pixel.blue);
-// }
-
 int			ft_pixel_color_alfa(double max_speed, double speed)
 {
 	double	per;
@@ -63,3 +53,13 @@ int		ft_pixel_color_betta(t_fractol *data, int max_speed, int speed)
 		color = mlx_get_color_value(data->mlx_ptr, speed * data->color);
 	return (color);
 }
+
+// static int	color_alfa(double per)
+// {
+// 	t_color	pixel;
+
+// 	pixel.red = (int)(9 * (1 - per) * pow(per, 3) * 255);
+// 	pixel.green = (int)(15 * pow((1 - per), 2) * pow(per, 2) * 255);
+// 	pixel.blue = (int)(8.5 * pow((1 - per), 3) * per * 255);
+// 	return ((pixel.red << 16) | (pixel.green << 8) | pixel.blue);
+// }

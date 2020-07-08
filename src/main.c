@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: wrhett <wrhett@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/04 18:36:00 by wrhett            #+#    #+#             */
-/*   Updated: 2020/02/10 12:37:34 by wrhett           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "fractol.h"
 
 void		ft_exit(void)
@@ -31,7 +19,6 @@ void		ft_operation(t_fractol *p)
 	mlx_hook(p->win_ptr, 17, 0, close_endian, p);
 	mlx_hook(p->win_ptr, 4, 0, mouse_press, p);
 	mlx_hook(p->win_ptr, 6, 0, mouse_movement, p);
-	// mlx_loop(p->mlx_ptr);
 }
 
 static void	ft_mlx_rectangle(t_fractol *p, char *str)
@@ -43,6 +30,7 @@ static void	ft_mlx_rectangle(t_fractol *p, char *str)
 			&p->size_line, &p->endian);
 	ft_paint_rectangle(p);
 	ft_operation(p);
+	mlx_loop(p->mlx_ptr);
 }
 
 int			main(int argc, char **argv)
