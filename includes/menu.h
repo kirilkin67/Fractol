@@ -1,5 +1,5 @@
-#ifndef MANUAL_H
-# define MANUAL_H
+#ifndef MENU_H
+# define MENU_H
 
 # define STR1	"zoom + or - "
 # define STR2	"scrol UP +, scroll DOWN -"

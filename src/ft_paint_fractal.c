@@ -1,40 +1,20 @@
 #include "../includes/fractol.h"
 
-void		ft_paint_julia(t_fractol *p)
+void	ft_paint_julia(t_fractol *p)
 {
-	char *s1;
-	char *str;
-
-	s1 = "Iteration:  ";
-	str = ft_itoa(p->num);
 	ft_multi_thread_julia(p);
-	mlx_put_image_to_window(p->mlx_ptr, p->win_ptr, p->img_ptr, 0, 0);
-	mlx_string_put(p->mlx_ptr, p->win_ptr, 20, 20, 0xFFFFFF, s1);
-	mlx_string_put(p->mlx_ptr, p->win_ptr, 130, 20, 0xFFFFFF, str);
-	mlx_string_put(p->mlx_ptr, p->win_ptr, 20, 40, 0xFFFFFF, STR1);
-	mlx_string_put(p->mlx_ptr, p->win_ptr, 20, 60, 0xFFFFFF, STR2);
-	free(str);
+	ft_print_instruction(p);
 	ft_operation(p);
 }
 
-void		ft_paint_mandelbrota(t_fractol *p)
+void	ft_paint_mandelbrota(t_fractol *p)
 {
-	char *s1;
-	char *str;
-
-	s1 = "Iteration:  ";
-	str = ft_itoa(p->num);
 	ft_multi_thread_mandelbrota(p);
-	mlx_put_image_to_window(p->mlx_ptr, p->win_ptr, p->img_ptr, 0, 0);
-	mlx_string_put(p->mlx_ptr, p->win_ptr, 20, 20, 0xFFFFFF, s1);
-	mlx_string_put(p->mlx_ptr, p->win_ptr, 130, 20, 0xFFFFFF, str);
-	mlx_string_put(p->mlx_ptr, p->win_ptr, 20, 40, 0xFFFFFF, STR1);
-	mlx_string_put(p->mlx_ptr, p->win_ptr, 20, 60, 0xFFFFFF, STR2);
-	free(str);
+	ft_print_instruction(p);
 	ft_operation(p);
 }
 
-void		ft_paint_rectangle(t_fractol *p)
+void	ft_paint_rectangle(t_fractol *p)
 {
 	char *str;
 
@@ -46,7 +26,7 @@ void		ft_paint_rectangle(t_fractol *p)
 	mlx_string_put(p->mlx_ptr, p->win_ptr, 20, 20, 0xFFFFFF, str);
 }
 
-void		ft_mlx_fractal(t_fractol *p, char *str)
+void	ft_mlx_fractal(t_fractol *p, char *str)
 {
 	// p->mlx_ptr = mlx_init();
 	p->win_ptr = mlx_new_window(p->mlx_ptr, WIDHT, HIGHT, str);

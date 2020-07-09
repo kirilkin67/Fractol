@@ -7,12 +7,6 @@ void		ft_exit(void)
 	exit(1);
 }
 
-int			close_endian(void *param)
-{
-	(void)param;
-	exit(0);
-}
-
 void		ft_operation(t_fractol *p)
 {
 	mlx_hook(p->win_ptr, 2, 0, key_press, p);

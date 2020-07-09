@@ -25,7 +25,7 @@ int		ft_pixel_number_check(t_fractol *data, double new_re, double new_im)
 
 	z_re = new_re;
 	z_im = new_im;
-	orbit = pow(new_re, 2) + pow(new_im, 2);
+	orbit = new_re * new_re + new_im * new_im;
 	data->n = 0;
 	while (data->n < data->num && orbit <= 4)
 	{
