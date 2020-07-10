@@ -12,5 +12,8 @@
 # define STR9	"axis Z  key4 and key6"
 # define STR10	"zoom: Mouse"
 # define STR11	"scrol UP +, scroll DOWN -"
+# define STR12	"fractol Mandelbrota - key M"
+# define STR13	"fractol Julia       - key J"
+# define STR14	"fractol Symmetry    - key S"
 
 #endif

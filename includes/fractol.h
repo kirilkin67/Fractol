@@ -38,13 +38,14 @@ void	ft_drawing_line(t_fractol *p, int *dot1, int *dot2);
 void	ft_drawing_line_dot(t_fractol *p, t_dot *dot1, t_dot *dot2);
 void	ft_drawing_fon(t_fractol *p);
 int		close_endian(void *param);
+int		expose_hook(t_fractol *p);
 int		key_press(int key, t_fractol *p);
 int		mouse_press(int button, int x, int y, t_fractol *p);
 int		mouse_movement(int x, int y, t_fractol *p);
 void	ft_mlx_fractal(t_fractol *p, char *str);
 void	ft_exit(void);
 void	ft_operation(t_fractol *p);
-void	ft_print_instruction(t_fractol *p);
+void	ft_print_instructions(t_fractol *p);
 int		ft_pixel_color(int color1, int color2, int step, int n);
 int		ft_pixel_color_alfa(double max_speed, double speed);
 int		ft_pixel_color_betta(t_fractol *data, int max_speed, int speed);
@@ -63,5 +64,6 @@ void	ft_paint_julia(t_fractol *p);
 void	ft_multi_thread_julia(t_fractol *paint);
 void	ft_multi_thread_mandelbrota(t_fractol *paint);
 void	ft_paint_fractal(void *mlx_ptr, t_fractol *p, char *str);
+void	ft_paint_symmetry(t_fractol *p);
 
 #endif

@@ -5,7 +5,7 @@ CC = gcc
 SRC_DIR = ./src/
 SRC_LIST = main.c ft_paint_fractal.c \
 	ft_drawing_line.c ft_fractal_rectangle.c \
-	ft_fractal_julia.c ft_fractal_mandelbrota.c \
+	ft_fractal_julia.c ft_fractal_mandelbrota.c ft_fractal_symmetry.c\
 	ft_pixel_color.c \
 	ft_operation_key.c ft_operation_mouse.c \
 	ft_standard_methods.c
@@ -59,6 +59,9 @@ $(OBJECTS_DIR)%.o: $(SRC_DIR)%.c $(HEADER)
 $(LIBFT): FAKE
 		@$(MAKE) -C $(LIBFT_DIR)
 		@$(MAKE) -C $(MLX_DIR)
+
+test: all
+		./$(NAME) Julia
 
 clean:
 		@rm -rf $(OBJECTS_DIR)

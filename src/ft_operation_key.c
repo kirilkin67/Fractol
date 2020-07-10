@@ -34,26 +34,30 @@ void	color_key(int key, t_fractol *p)
 		p->flag_color = 1;
 	else if (key == KEY_W)
 		p->flag_color = 2;
-	if (key == 15)
+	if (key == KEY_R)
 		p->color += 3000;
-	else if (key == 14 && p->color > 10000)
+	else if (key == KEY_E && p->color > 10000)
 		p->color -= 2000;
 	if (p->flag == 1)
 		ft_paint_mandelbrota(p);
 	if (p->flag == 2)
 		ft_paint_julia(p);
+	if (p->flag == 3)
+		ft_paint_symmetry(p);
 }
 
 void	iteration_key(int key, t_fractol *p)
 {
-	if (key == 69 && p->num < 1000)
+	if (key == NUM_KEY_PLUS && p->num < 1000)
 		p->num += 20;
-	if (key == 78 && p->num > 40)
+	if (key == NUM_KEY_MINUS && p->num > 40)
 		p->num -= 20;
 	if (p->flag == 1)
 		ft_paint_mandelbrota(p);
 	if (p->flag == 2)
 		ft_paint_julia(p);
+	if (p->flag == 3)
+		ft_paint_symmetry(p);
 }
 
 void	shift_key(int key, t_fractol *p)
@@ -70,6 +74,10 @@ void	shift_key(int key, t_fractol *p)
 		ft_paint_mandelbrota(p);
 	if (p->flag == 2)
 		ft_paint_julia(p);
+	if (p->flag == 3)
+	{
+		ft_paint_symmetry(p);
+	}
 }
 
 int		key_press(int key, t_fractol *p)
@@ -84,7 +92,7 @@ int		key_press(int key, t_fractol *p)
 		iteration_key(key, p);
 	if (key == 125 || key == 126 || key == 123 || key == 124)
 		shift_key(key, p);
-	if (key == 49 || key == KEY_J || key == KEY_M)
+	if (key == 49 || key == KEY_J || key == KEY_M || key == KEY_S)
 	{
 		if ((p->flag == 1 && key == 49) || key == KEY_M)
 		{
@@ -95,6 +103,12 @@ int		key_press(int key, t_fractol *p)
 		{
 			ft_parametr_julia(p);
 			ft_paint_julia(p);
+		}
+		if (key == KEY_S)
+		{
+			ft_parametr_julia(p);
+			p->flag = 3;
+			ft_paint_symmetry(p);
 		}
 	}
 	return (0);

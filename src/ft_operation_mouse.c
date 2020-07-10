@@ -19,8 +19,10 @@ static void	zoom_mouse(int key, t_fractol *p)
 	p->y_im_max -= ((delta_y - p->delta_x_re / k_wind) * p->alfa_y);
 	if (p->flag == 1)
 		ft_paint_mandelbrota(p);
-	else if (p->flag == 2)
+	if (p->flag == 2)
 		ft_paint_julia(p);
+	if (p->flag == 3)
+		ft_paint_symmetry(p);
 }
 
 int		mouse_press(int button, int x, int y, t_fractol *p)
@@ -36,7 +38,7 @@ int		mouse_press(int button, int x, int y, t_fractol *p)
 			zoom_mouse(button, p);
 			}
 		}
-		if (p->flag == 2 && button == 3)
+		if ((p->flag == 2 || p->flag == 3) && button == 3)
 			p->mouse_key = 1;
 	}
 	return (0);
@@ -46,11 +48,14 @@ int		mouse_movement(int x, int y, t_fractol *p)
 {
 	if (y >= 0 && y <= (HIGHT - 1) && x >= 0 && x <= (WIDHT - 1))
 	{
-		if (p->flag == 2 && p->mouse_key == -1)
+		if ((p->flag == 2 || p->flag == 3) && p->mouse_key == -1)
 		{
 			p->c_re = (double)(x - (WIDHT - 1)/2) / (double)(WIDHT - 1) * 2;
 			p->c_im = (double)((HIGHT - 1)/2 - y) / (double)(HIGHT - 1);
-			ft_paint_julia(p);
+			if (p->flag == 2)
+				ft_paint_julia(p);
+			else
+				ft_paint_symmetry(p);
 		}
 	}
 	return (0);

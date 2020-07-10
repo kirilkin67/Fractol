@@ -1,22 +1,6 @@
-#include "../includes/fractol.h"
+#include "fractol.h"
 
-void	ft_parametr_julia(t_fractol *p)
-{
-	p->width = WIDHT;
-	p->hight = HIGHT;
-	p->c_re = 0.285;
-	p->c_im = 0.01;
-	p->x_re_min = -1.5;
-	p->y_im_max = 1;
-	p->delta_x_re = 3;
-	p->num = NUM;
-	p->color = COLOR;
-	p->flag = 2;
-	p->flag_color = 1;
-	p->mouse_key = -1;
-}
-
-int		ft_julia_number_check(t_fractol *data, double new_re, double new_im)
+int		ft_symmetry_number_check(t_fractol *data, double new_re, double new_im)
 {
 	double	tmp;
 	double	z_re;
@@ -31,14 +15,14 @@ int		ft_julia_number_check(t_fractol *data, double new_re, double new_im)
 	{
 		tmp = z_re;
 		z_re = z_re * z_re - z_im * z_im + data->c_re;
-		z_im = 2 * tmp * z_im + data->c_im;
+		z_im = 2 * tmp * ABS(z_im) + data->c_im;
 		orbit = z_re * z_re + z_im * z_im;
 		data->n += 1;
 	}
 	return (data->n);
 }
 
-void	*thread_julia(void *function)
+void	*thread_symmetry(void *function)
 {
 	int			speed;
 	int			color;
@@ -54,7 +38,7 @@ void	*thread_julia(void *function)
 		{
 			data->new_re = data->x_re_min + data->x * zoom;
 			data->new_im = data->y_im_max - data->y_start * zoom;
-			speed = ft_julia_number_check(data, data->new_re, data->new_im);
+			speed = ft_symmetry_number_check(data, data->new_re, data->new_im);
 			if (data->flag_color == 1)
 				color = ft_pixel_color_alfa(data->num, speed);
 			else
@@ -67,7 +51,7 @@ void	*thread_julia(void *function)
 	return (NULL);
 }
 
-void	ft_multi_thread_julia(t_fractol *paint)
+void	ft_multi_thread_symmetry(t_fractol *paint)
 {
 	pthread_t	id[NUM_THREAD];
 	t_fractol	data[NUM_THREAD];
@@ -79,9 +63,19 @@ void	ft_multi_thread_julia(t_fractol *paint)
 		data[n] = *paint;
 		data[n].y_start = n * HIGHT / NUM_THREAD;
 		data[n].y_end = (n + 1) * HIGHT / NUM_THREAD;
-		pthread_create(&id[n], NULL, thread_julia, &data[n]);
+		pthread_create(&id[n], NULL, thread_symmetry, &data[n]);
 		n += 1;
 	}
 	while (n--)
 		pthread_join(id[n], NULL);
+}
+
+void	ft_paint_symmetry(t_fractol *p)
+{
+	
+	// ft_parametr_julia(p);
+	// p->flag = 3;
+	ft_multi_thread_symmetry(p);
+	expose_hook(p);
+	// ft_operation(p);
 }

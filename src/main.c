@@ -9,10 +9,11 @@ void		ft_exit(void)
 
 void		ft_operation(t_fractol *p)
 {
-	mlx_hook(p->win_ptr, 2, 0, key_press, p);
-	mlx_hook(p->win_ptr, 17, 0, close_endian, p);
-	mlx_hook(p->win_ptr, 4, 0, mouse_press, p);
-	mlx_hook(p->win_ptr, 6, 0, mouse_movement, p);
+	mlx_hook(p->win_ptr, 2, (1L << 0), key_press, p);
+	mlx_hook(p->win_ptr, 17, (1L << 17), close_endian, p);
+	mlx_hook(p->win_ptr, 4, (1L << 2), mouse_press, p);
+	mlx_hook(p->win_ptr, 6, (1L << 6), mouse_movement, p);
+	mlx_hook(p->win_ptr, 12, (1L << 15), expose_hook, p);
 }
 
 static void	ft_mlx_rectangle(t_fractol *p, char *str)
@@ -33,6 +34,12 @@ int			main(int argc, char **argv)
 	t_fractol	paint1;
 	void		*mlx_ptr;
 
+	if (argc == 1)
+	{
+		mlx_ptr = mlx_init();
+		ft_paint_fractal(mlx_ptr, &paint, "Julia");
+		mlx_loop(mlx_ptr);
+	}
 	if (argc == 2)
 	{
 		mlx_ptr = mlx_init();
