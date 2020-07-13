@@ -11,7 +11,7 @@ void	ft_parametr_julia(t_fractol *p)
 	p->delta_x_re = 3;
 	p->num = NUM;
 	p->color = COLOR;
-	p->flag = 2;
+	p->type_fractal = JULIA;
 	p->flag_color = 1;
 	p->mouse_key = -1;
 }

@@ -10,7 +10,7 @@ void	ft_parametr_mandelbrota(t_fractol *p)
 	p->num = NUM;
 	p->color = COLOR;
 	p->flag_color = 1;
-	p->flag = 1;
+	p->type_fractal = MANDELBROT;
 	p->mouse_key = 1;
 }
 

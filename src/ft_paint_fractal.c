@@ -27,14 +27,6 @@ void	ft_paint_mandelbrota(t_fractol *p)
 	ft_operation(p);
 }
 
-void	ft_mlx_fractal(t_fractol *p, char *str)
-{
-	p->win_ptr = mlx_new_window(p->mlx_ptr, WIDHT, HIGHT, str);
-	p->img_ptr = mlx_new_image(p->mlx_ptr, WIDHT, HIGHT);
-	p->draw = (int *)mlx_get_data_addr(p->img_ptr, &p->bpp, \
-				&p->size_line, &p->endian);
-}
-
 void		ft_paint_fractal(void *mlx_ptr, t_fractol *p, char *str)
 {
 	p->mlx_ptr = mlx_ptr;
@@ -54,3 +46,11 @@ void		ft_paint_fractal(void *mlx_ptr, t_fractol *p, char *str)
 	else
 		ft_exit();
 }
+
+// void	ft_mlx_fractal(t_fractol *p, char *str)
+// {
+// 	p->win_ptr = mlx_new_window(p->mlx_ptr, WIDHT, HIGHT, str);
+// 	p->img_ptr = mlx_new_image(p->mlx_ptr, WIDHT, HIGHT);
+// 	p->draw = (int *)mlx_get_data_addr(p->img_ptr, &p->bpp, \
+// 				&p->size_line, &p->endian);
+// }

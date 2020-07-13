@@ -11,7 +11,7 @@ void	ft_parametr_rectangle(t_fractol *p, char *s1, char *s2)
 	p->y0 = 100;
 	p->depth = DEPTH;
 	p->alfa = ALFA;
-	p->flag = 0;
+	p->type_fractal = 0;
 }
 
 void	ft_point_coordinates(t_fractol *p)

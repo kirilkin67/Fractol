@@ -38,12 +38,7 @@ void	color_key(int key, t_fractol *p)
 		p->color += 3000;
 	else if (key == KEY_E && p->color > 10000)
 		p->color -= 2000;
-	if (p->flag == 1)
-		ft_paint_mandelbrota(p);
-	if (p->flag == 2)
-		ft_paint_julia(p);
-	if (p->flag == 3)
-		ft_paint_symmetry(p);
+	fractal_type_image_selection(p);
 }
 
 void	iteration_key(int key, t_fractol *p)
@@ -52,12 +47,7 @@ void	iteration_key(int key, t_fractol *p)
 		p->num += 20;
 	if (key == NUM_KEY_MINUS && p->num > 40)
 		p->num -= 20;
-	if (p->flag == 1)
-		ft_paint_mandelbrota(p);
-	if (p->flag == 2)
-		ft_paint_julia(p);
-	if (p->flag == 3)
-		ft_paint_symmetry(p);
+	fractal_type_image_selection(p);
 }
 
 void	shift_key(int key, t_fractol *p)
@@ -70,21 +60,14 @@ void	shift_key(int key, t_fractol *p)
 		p->y_im_max += 30 * p->delta_x_re / WIDHT;
 	else if (key == 126)
 		p->y_im_max -= 30 * p->delta_x_re / WIDHT;
-	if (p->flag == 1)
-		ft_paint_mandelbrota(p);
-	if (p->flag == 2)
-		ft_paint_julia(p);
-	if (p->flag == 3)
-	{
-		ft_paint_symmetry(p);
-	}
+	fractal_type_image_selection(p);
 }
 
 int		key_press(int key, t_fractol *p)
 {
-	if (key == 53)
+	if (key == KEY_ESC)
 		exit(0);
-	if ((key == 24 || key == 27) && p->flag == 0)
+	if ((key == 24 || key == 27) && p->type_fractal == 0)
 		zoom_key(key, p);
 	if (key == 12 || key == 13 || key == 14 || key == 15)
 		color_key(key, p);
@@ -92,24 +75,19 @@ int		key_press(int key, t_fractol *p)
 		iteration_key(key, p);
 	if (key == 125 || key == 126 || key == 123 || key == 124)
 		shift_key(key, p);
-	if (key == 49 || key == KEY_J || key == KEY_M || key == KEY_S)
+	if ((key == 49 || key == KEY_J || key == KEY_M || key == KEY_S) && \
+		p->type_fractal != 0)
 	{
-		if ((p->flag == 1 && key == 49) || key == KEY_M)
-		{
+		if ((p->type_fractal == MANDELBROT && key == 49) || key == KEY_M)
 			ft_parametr_mandelbrota(p);
-			ft_paint_mandelbrota(p);
-		}
-		if ((p->flag == 2 && key == 49) || key == KEY_J)
+		if ((p->type_fractal == JULIA && key == 49) || key == KEY_J)
+			ft_parametr_julia(p);
+		if ((p->type_fractal == SYMMETRY && key == 49) || key == KEY_S)
 		{
 			ft_parametr_julia(p);
-			ft_paint_julia(p);
+			p->type_fractal = SYMMETRY;
 		}
-		if (key == KEY_S)
-		{
-			ft_parametr_julia(p);
-			p->flag = 3;
-			ft_paint_symmetry(p);
-		}
+		fractal_type_image_selection(p);
 	}
 	return (0);
 }

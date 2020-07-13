@@ -33,6 +33,9 @@
 # define ALFA	0.05
 # define NUM	100
 # define NUM_THREAD	8
+# define MANDELBROT	1
+# define JULIA	2
+# define SYMMETRY	3
 
 void	ft_drawing_line(t_fractol *p, int *dot1, int *dot2);
 void	ft_drawing_line_dot(t_fractol *p, t_dot *dot1, t_dot *dot2);
@@ -42,6 +45,7 @@ int		expose_hook(t_fractol *p);
 int		key_press(int key, t_fractol *p);
 int		mouse_press(int button, int x, int y, t_fractol *p);
 int		mouse_movement(int x, int y, t_fractol *p);
+void	zoom_mouse(int key, t_fractol *p);
 void	ft_mlx_fractal(t_fractol *p, char *str);
 void	ft_exit(void);
 void	ft_operation(t_fractol *p);
@@ -65,5 +69,6 @@ void	ft_multi_thread_julia(t_fractol *paint);
 void	ft_multi_thread_mandelbrota(t_fractol *paint);
 void	ft_paint_fractal(void *mlx_ptr, t_fractol *p, char *str);
 void	ft_paint_symmetry(t_fractol *p);
+void	fractal_type_image_selection(t_fractol *p);
 
 #endif

@@ -73,9 +73,6 @@ void	ft_multi_thread_symmetry(t_fractol *paint)
 void	ft_paint_symmetry(t_fractol *p)
 {
 	
-	// ft_parametr_julia(p);
-	// p->flag = 3;
 	ft_multi_thread_symmetry(p);
 	expose_hook(p);
-	// ft_operation(p);
 }

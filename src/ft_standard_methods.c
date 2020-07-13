@@ -1,6 +1,6 @@
 #include "../includes/fractol.h"
 
-int			close_endian(void *param)
+int		close_endian(void *param)
 {
 	(void)param;
 	exit(0);
@@ -28,4 +28,12 @@ void	ft_print_instructions(t_fractol *p)
 	mlx_string_put(p->mlx_ptr, p->win_ptr, 20, 100, 0xFFFFFF, STR13);
 	mlx_string_put(p->mlx_ptr, p->win_ptr, 20, 120, 0xFFFFFF, STR14);
 	free(str);
+}
+
+void	ft_mlx_fractal(t_fractol *p, char *str)
+{
+	p->win_ptr = mlx_new_window(p->mlx_ptr, WIDHT, HIGHT, str);
+	p->img_ptr = mlx_new_image(p->mlx_ptr, WIDHT, HIGHT);
+	p->draw = (int *)mlx_get_data_addr(p->img_ptr, &p->bpp, \
+				&p->size_line, &p->endian);
 }

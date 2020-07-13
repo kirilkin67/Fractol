@@ -95,7 +95,7 @@ typedef struct	s_fractol
 	double		alfa;
 	double		alfa_x;
 	double		alfa_y;
-	int			flag;
+	int			type_fractal;
 	int			flag_color;
 	int			n;
 }				t_fractol;
