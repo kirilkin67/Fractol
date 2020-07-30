@@ -60,8 +60,8 @@ int		mouse_movement(int x, int y, t_fractol *p)
 		if ((p->type_fractal == JULIA || p->type_fractal == SYMMETRY) \
 			&& p->mouse_key == -1)
 		{
-			p->c_re = (double)(x - (WIDHT - 1)/2) / (double)(WIDHT - 1) * 2;
-			p->c_im = (double)((HIGHT - 1)/2 - y) / (double)(HIGHT - 1);
+			p->new_re = (double)(x - (WIDHT - 1)/2) / (double)(WIDHT - 1) * 2;
+			p->new_im = (double)((HIGHT - 1)/2 - y) / (double)(HIGHT - 1);
 			if (p->type_fractal == JULIA)
 				ft_paint_julia(p);
 			if (p->type_fractal == SYMMETRY)

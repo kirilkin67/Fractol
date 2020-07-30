@@ -21,7 +21,7 @@ int			ft_pixel_color(int color1, int color2, int step, int n)
 	return ((red << 16) | (green << 8) | blue);
 }
 
-int			ft_pixel_color_alfa(double max_speed, double speed)
+static int	ft_pixel_color_alfa(double max_speed, double speed)
 {
 	double	per;
 	int		red;
@@ -43,16 +43,35 @@ int			ft_pixel_color_alfa(double max_speed, double speed)
 	return ((red << 16) | (green << 8) | blue);
 }
 
-int		ft_pixel_color_betta(t_fractol *data, int max_speed, int speed)
+int			function_color(t_fractol *data, int speed)
 {
 	int	color;
-
-	if (speed == max_speed)
-		color = 0x0;
-	else
-		color = mlx_get_color_value(data->mlx_ptr, speed * data->color);
+	int	max_iter;
+	
+	color = 0x0;
+	max_iter = data->num;
+	if (data->flag_color == 1)
+		color = ft_pixel_color_alfa(max_iter, speed);
+	else if (data->flag_color == 2)
+	{
+		if (speed == max_iter)
+			color = 0x0;
+		else
+			color = mlx_get_color_value(data->mlx_ptr, speed * data->color);
+	}
 	return (color);
 }
+
+// static int	ft_pixel_color_betta(t_fractol *data, int max_speed, int speed)
+// {
+// 	int	color;
+
+// 	if (speed == max_speed)
+// 		color = 0x0;
+// 	else
+// 		color = mlx_get_color_value(data->mlx_ptr, speed * data->color);
+// 	return (color);
+// }
 
 // static int	color_alfa(double per)
 // {

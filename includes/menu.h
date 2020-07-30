@@ -1,7 +1,7 @@
 #ifndef MENU_H
 # define MENU_H
 
-# define STR1	"zoom + or - "
+# define STR1	"zoom MOUSE"
 # define STR2	"scrol UP +, scroll DOWN -"
 # define STR3	"Iteration:  "
 # define STR4	"shift -> or <- UP or DOWN"

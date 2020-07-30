@@ -32,7 +32,7 @@
 # define DEPTH	100
 # define ALFA	0.05
 # define NUM	100
-# define NUM_THREAD	8
+# define NUM_THREAD	16
 # define MANDELBROT	1
 # define JULIA	2
 # define SYMMETRY	3
@@ -51,24 +51,22 @@ void	ft_exit(void);
 void	ft_operation(t_fractol *p);
 void	ft_print_instructions(t_fractol *p);
 int		ft_pixel_color(int color1, int color2, int step, int n);
-int		ft_pixel_color_alfa(double max_speed, double speed);
-int		ft_pixel_color_betta(t_fractol *data, int max_speed, int speed);
+int		function_color(t_fractol *data, int speed);
 void	ft_operation_key(t_fractol *p);
 void	ft_point_coordinates(t_fractol *p);
 void	ft_parametr_rectangle(t_fractol *p, char *s1, char *s2);
 void	ft_paint_rectangle(t_fractol *p);
 void	ft_fractal_rectangle(t_fractol *p, int rectangle[][2]);
-int		ft_complex_number_check(int num, double c_re, double c_im);
+int		ft_mandelbrot_check(int num, double c_re, double c_im);
+int		ft_julia_check(t_fractol *data, double new_re, double new_im);
+int		ft_symmetry_check(t_fractol *data, double new_re, double new_im);
 void	ft_parametr_mandelbrota(t_fractol *p);
-void	ft_fractal_mandelbrota(t_fractol *p);
 void	ft_paint_mandelbrota(t_fractol *p);
 void	ft_parametr_julia(t_fractol *p);
-void	ft_fractal_julia(t_fractol *p);
 void	ft_paint_julia(t_fractol *p);
-void	ft_multi_thread_julia(t_fractol *paint);
-void	ft_multi_thread_mandelbrota(t_fractol *paint);
 void	ft_paint_fractal(void *mlx_ptr, t_fractol *p, char *str);
 void	ft_paint_symmetry(t_fractol *p);
 void	fractal_type_image_selection(t_fractol *p);
+void	ft_multi_thread(t_fractol *paint);
 
 #endif

@@ -14,18 +14,24 @@ void	ft_paint_rectangle(t_fractol *p)
 
 void	ft_paint_julia(t_fractol *p)
 {
-	
-	ft_multi_thread_julia(p);
+	ft_multi_thread(p);
 	expose_hook(p);
 	ft_operation(p);
 }
 
 void	ft_paint_mandelbrota(t_fractol *p)
 {
-	ft_multi_thread_mandelbrota(p);
+	ft_multi_thread(p);
 	expose_hook(p);
 	ft_operation(p);
 }
+
+void	ft_paint_symmetry(t_fractol *p)
+{
+	ft_multi_thread(p);
+	expose_hook(p);
+}
+
 
 void		ft_paint_fractal(void *mlx_ptr, t_fractol *p, char *str)
 {
@@ -43,14 +49,13 @@ void		ft_paint_fractal(void *mlx_ptr, t_fractol *p, char *str)
 		ft_parametr_julia(p);
 		ft_paint_julia(p);
 	}
+	else if ((ft_strcmp(str, "Symmetry") == 0))
+	{
+		ft_mlx_fractal(p, str);
+		ft_parametr_julia(p);
+		p->type_fractal = SYMMETRY;
+		ft_paint_symmetry(p);
+	}
 	else
 		ft_exit();
 }
-
-// void	ft_mlx_fractal(t_fractol *p, char *str)
-// {
-// 	p->win_ptr = mlx_new_window(p->mlx_ptr, WIDHT, HIGHT, str);
-// 	p->img_ptr = mlx_new_image(p->mlx_ptr, WIDHT, HIGHT);
-// 	p->draw = (int *)mlx_get_data_addr(p->img_ptr, &p->bpp, \
-// 				&p->size_line, &p->endian);
-// }

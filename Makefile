@@ -6,6 +6,7 @@ SRC_DIR = ./src/
 SRC_LIST = main.c ft_paint_fractal.c \
 	ft_drawing_line.c ft_fractal_rectangle.c \
 	ft_fractal_julia.c ft_fractal_mandelbrota.c ft_fractal_symmetry.c\
+	ft_pthread_function.c \
 	ft_pixel_color.c \
 	ft_operation_key.c ft_operation_mouse.c \
 	ft_standard_methods.c
