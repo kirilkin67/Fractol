@@ -48,7 +48,12 @@ int		mouse_press(int button, int x, int y, t_fractol *p)
 		}
 		if ((p->type_fractal == JULIA || p->type_fractal == SYMMETRY) && \
 			button == 3)
-			p->mouse_key = 1;
+			{
+			if (p->mouse_key == -1)
+				p->mouse_key = 1;
+			else if (p->mouse_key == 1)
+				p->mouse_key = -1;
+			}
 	}
 	return (0);
 }
@@ -60,8 +65,8 @@ int		mouse_movement(int x, int y, t_fractol *p)
 		if ((p->type_fractal == JULIA || p->type_fractal == SYMMETRY) \
 			&& p->mouse_key == -1)
 		{
-			p->new_re = (double)(x - (WIDHT - 1)/2) / (double)(WIDHT - 1) * 2;
-			p->new_im = (double)((HIGHT - 1)/2 - y) / (double)(HIGHT - 1);
+			p->const_re = (double)(x - (WIDHT - 1)/2) / (double)(WIDHT - 1) * 2;
+			p->const_im = (double)((HIGHT - 1)/2 - y) / (double)(HIGHT - 1);
 			if (p->type_fractal == JULIA)
 				ft_paint_julia(p);
 			if (p->type_fractal == SYMMETRY)

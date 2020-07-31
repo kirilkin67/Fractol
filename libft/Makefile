@@ -6,7 +6,7 @@
 #    By: wrhett <wrhett@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/08 15:16:11 by wrhett            #+#    #+#              #
-#    Updated: 2020/07/09 14:34:23 by wrhett           ###   ########.fr        #
+#    Updated: 2020/07/31 13:03:48 by wrhett           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,7 +91,7 @@ all:	$(NAME)
 
 $(OBJECTS): %.o: %.c $(HEADER)
 		@gcc $(FLAGS) -o $@ -c $<
-		@echo "\033[32m.\033[0m\c"
+		@echo "\033[32m⏩\033[0m\c"
 
 $(NAME): $(OBJECTS)
 		@ar rc $@ $^

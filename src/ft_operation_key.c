@@ -31,9 +31,9 @@ void	zoom_key(int key, t_fractol *p)
 void	color_key(int key, t_fractol *p)
 {
 	if (key == KEY_Q)
-		p->flag_color = 1;
+		p->color_function = 1;
 	else if (key == KEY_W)
-		p->flag_color = 2;
+		p->color_function = 2;
 	if (key == KEY_R)
 		p->color += 3000;
 	else if (key == KEY_E && p->color > 10000)
@@ -52,13 +52,13 @@ void	iteration_key(int key, t_fractol *p)
 
 void	shift_key(int key, t_fractol *p)
 {
-	if (key == 123)
+	if (key == KEY_LEFT)
 		p->x_re_min += 30 * p->delta_x_re / WIDHT;
-	else if (key == 124)
+	else if (key == KEY_RIGHT)
 		p->x_re_min -= 30 * p->delta_x_re / WIDHT;
-	else if (key == 125)
+	else if (key == KEY_DOWN)
 		p->y_im_max += 30 * p->delta_x_re / WIDHT;
-	else if (key == 126)
+	else if (key == KEY_UP)
 		p->y_im_max -= 30 * p->delta_x_re / WIDHT;
 	fractal_type_image_selection(p);
 }
@@ -67,22 +67,23 @@ int		key_press(int key, t_fractol *p)
 {
 	if (key == KEY_ESC)
 		exit(0);
-	if ((key == 24 || key == 27) && p->type_fractal == 0)
+	if ((key == KEY_PLUS || key == KEY_MINUS) && p->type_fractal == 0)
 		zoom_key(key, p);
-	if (key == 12 || key == 13 || key == 14 || key == 15)
+	if (key == KEY_Q || key == KEY_W || key == KEY_E || key == KEY_R)
 		color_key(key, p);
-	if (key == 69 || key == 78)
+	if (key == NUM_KEY_PLUS || key == NUM_KEY_MINUS)
 		iteration_key(key, p);
-	if (key == 125 || key == 126 || key == 123 || key == 124)
+	if (key == KEY_DOWN || key == KEY_UP || \
+		key == KEY_LEFT || key == KEY_RIGHT)
 		shift_key(key, p);
-	if ((key == 49 || key == KEY_J || key == KEY_M || key == KEY_S) && \
-		p->type_fractal != 0)
+	if ((key == KEY_SPACE || key == KEY_J || key == KEY_M || key == KEY_S) \
+		&& p->type_fractal != 0)
 	{
-		if ((p->type_fractal == MANDELBROT && key == 49) || key == KEY_M)
+		if ((p->type_fractal == MANDELBROT && key == KEY_SPACE) || key == KEY_M)
 			ft_parametr_mandelbrota(p);
-		if ((p->type_fractal == JULIA && key == 49) || key == KEY_J)
+		if ((p->type_fractal == JULIA && key == KEY_SPACE) || key == KEY_J)
 			ft_parametr_julia(p);
-		if ((p->type_fractal == SYMMETRY && key == 49) || key == KEY_S)
+		if ((p->type_fractal == SYMMETRY && key == KEY_SPACE) || key == KEY_S)
 		{
 			ft_parametr_julia(p);
 			p->type_fractal = SYMMETRY;

@@ -15,8 +15,8 @@ int		ft_symmetry_check(t_fractol *data, double c_re, double c_im)
 	while (iter < data->num && orbit <= 4)
 	{
 		tmp = z_re;
-		z_re = z_re * z_re - z_im * z_im + data->new_re;
-		z_im = 2 * tmp * ABS(z_im) + data->new_im;
+		z_re = z_re * z_re - z_im * z_im + data->const_re;
+		z_im = 2 * tmp * ABS(z_im) + data->const_im;
 		orbit = z_re * z_re + z_im * z_im;
 		iter += 1;
 	}

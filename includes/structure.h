@@ -76,8 +76,8 @@ typedef struct	s_fractol
 	int			mouse_y;
 	double		c_re;
 	double		c_im;
-	double		new_re;
-	double		new_im;
+	double		const_re;
+	double		const_im;
 	double		x_re_min;
 	double		y_im_max;
 	double		delta_x_re;
@@ -96,7 +96,7 @@ typedef struct	s_fractol
 	double		alfa_x;
 	double		alfa_y;
 	int			type_fractal;
-	int			flag_color;
+	int			color_function;
 	int			n;
 }				t_fractol;
 
