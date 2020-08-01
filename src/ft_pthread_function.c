@@ -5,7 +5,7 @@ int		ft_complex_number_check(t_fractol *data, double c_re, double c_im)
 	int speed;
 
 	if (data->type_fractal == MANDELBROT)
-		speed = ft_mandelbrot_check(data->num, c_re, c_im);
+		speed = ft_mandelbrot_check(data->num_iter, c_re, c_im);
 	if (data->type_fractal == JULIA)
 		speed = ft_julia_check(data, c_re, c_im);
 	if (data->type_fractal == SYMMETRY)

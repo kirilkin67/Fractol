@@ -9,7 +9,7 @@ void	ft_parametr_julia(t_fractol *p)
 	p->x_re_min = -1.5;
 	p->y_im_max = 1;
 	p->delta_x_re = 3;
-	p->num = NUM;
+	p->num_iter = MAX_ITER;
 	p->color = COLOR;
 	p->type_fractal = JULIA;
 	p->color_function = 1;
@@ -28,7 +28,7 @@ int		ft_julia_check(t_fractol *data, double c_re, double c_im)
 	z_im = c_im;
 	orbit = c_re * c_re + c_im * c_im;
 	iter = 0;
-	while (iter < data->num && orbit <= 4)
+	while (iter < data->num_iter && orbit <= 4)
 	{
 		tmp = z_re;
 		z_re = z_re * z_re - z_im * z_im + data->const_re;

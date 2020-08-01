@@ -85,7 +85,7 @@ typedef struct	s_fractol
 	int			x;
 	int			y_start;
 	int			y_end;
-	int			num;
+	int			num_iter;
 	double		angle;
 	double		k_look;
 	int			color;

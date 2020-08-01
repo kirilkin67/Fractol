@@ -19,22 +19,22 @@
 #  include "key_macos.h"
 # endif
 # define ABS(Value) ((Value) > 0 ? (Value) : -(Value))
-# define WIDHT	1800
+# define WIDHT		1800
 # define HIGHT	(WIDHT * 2 / 3)
 # define MAX_ZOOM	20000
-# define KZ_MAX	20
-# define K_ZOOM	1.2
-# define K_LOOK 0.087266462599716
-# define COLOR	100000
-# define COLOR1	0xFF00
-# define COLOR2	0x800080
+# define KZ_MAX		20
+# define K_ZOOM		1.2
+# define K_LOOK		0.087266462599716
+# define COLOR		100000
+# define COLOR1		0xFF00
+# define COLOR2		0x800080
 # define COLOR_FON	0x0
-# define DEPTH	100
-# define ALFA	0.05
-# define NUM	100
+# define DEPTH		100
+# define ALFA		0.05
+# define MAX_ITER	100
 # define NUM_THREAD	16
 # define MANDELBROT	1
-# define JULIA	2
+# define JULIA		2
 # define SYMMETRY	3
 
 void	ft_drawing_line(t_fractol *p, int *dot1, int *dot2);

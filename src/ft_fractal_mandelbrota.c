@@ -7,14 +7,14 @@ void	ft_parametr_mandelbrota(t_fractol *p)
 	p->x_re_min = -2;
 	p->y_im_max = 1;
 	p->delta_x_re = 3;
-	p->num = NUM;
+	p->num_iter = MAX_ITER;
 	p->color = COLOR;
 	p->color_function = 1;
 	p->type_fractal = MANDELBROT;
 	p->mouse_key = 1;
 }
 
-int		ft_mandelbrot_check(int num, double c_re, double c_im)
+int		ft_mandelbrot_check(int num_iter, double c_re, double c_im)
 {
 	double	tmp;
 	double	z_re;
@@ -26,7 +26,7 @@ int		ft_mandelbrot_check(int num, double c_re, double c_im)
 	z_im = c_im;
 	orbit = c_re * c_re + c_im * c_im;
 	iter = 0;
-	while (iter < num && orbit <= 4)
+	while (iter < num_iter && orbit <= 4)
 	{
 		tmp = z_re;
 		z_re = z_re * z_re - z_im * z_im + c_re;

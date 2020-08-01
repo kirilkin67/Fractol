@@ -49,7 +49,7 @@ int			function_color(t_fractol *data, int speed)
 	int	max_iter;
 	
 	color = 0x0;
-	max_iter = data->num;
+	max_iter = data->num_iter;
 	if (data->color_function == 1)
 		color = ft_pixel_color_alfa(max_iter, speed);
 	else if (data->color_function == 2)

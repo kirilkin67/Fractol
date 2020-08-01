@@ -43,10 +43,10 @@ void	color_key(int key, t_fractol *p)
 
 void	iteration_key(int key, t_fractol *p)
 {
-	if (key == NUM_KEY_PLUS && p->num < 1000)
-		p->num += 20;
-	if (key == NUM_KEY_MINUS && p->num > 40)
-		p->num -= 20;
+	if (key == NUM_KEY_PLUS && p->num_iter < 1000)
+		p->num_iter += 20;
+	if (key == NUM_KEY_MINUS && p->num_iter > 40)
+		p->num_iter -= 20;
 	fractal_type_image_selection(p);
 }
 

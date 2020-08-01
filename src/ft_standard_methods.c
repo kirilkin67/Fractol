@@ -19,7 +19,7 @@ void	ft_print_instructions(t_fractol *p)
 	char *str;
 
 	s1 = "Iteration + or - :";
-	str = ft_itoa(p->num);
+	str = ft_itoa(p->num_iter);
 	mlx_string_put(p->mlx_ptr, p->win_ptr, 20, 20, 0xFFFFFF, s1);
 	mlx_string_put(p->mlx_ptr, p->win_ptr, 210, 20, 0xFFFFFF, str);
 	mlx_string_put(p->mlx_ptr, p->win_ptr, 20, 40, 0xFFFFFF, STR1);
