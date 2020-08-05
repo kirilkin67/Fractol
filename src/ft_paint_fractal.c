@@ -32,11 +32,9 @@ void	ft_paint_symmetry(t_fractol *p)
 	expose_hook(p);
 }
 
-
-void		ft_paint_fractal(void *mlx_ptr, t_fractol *p, char *str)
+void	ft_paint_fractal(void *mlx_ptr, t_fractol *p, char *str)
 {
 	p->mlx_ptr = mlx_ptr;
-	
 	if ((ft_strcmp(str, "Mandelbrota") == 0))
 	{
 		ft_mlx_fractal(p, str);

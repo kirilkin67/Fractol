@@ -30,13 +30,13 @@ static void	drawing_data(t_draw *data, int *dot1, int *dot2)
 	data->tmp[1] = dot1[1];
 }
 
-void	ft_drawing_line(t_fractol *p, int *dot1, int *dot2)
+void		ft_drawing_line(t_fractol *p, int *dot1, int *dot2)
 {
 	t_draw data;
 
 	drawing_data(&data, dot1, dot2);
 	data.n = 0;
-	while (data.tmp[0] != dot2[0] || data.tmp[1] != dot2[1])//(p->n++ <= p->step)
+	while (data.tmp[0] != dot2[0] || data.tmp[1] != dot2[1])
 	{
 		data.color = ft_pixel_color(COLOR1, COLOR2, data.step, data.n);
 		if (data.tmp[0] >= 0 && data.tmp[0] <= (p->width - 1) && \
@@ -53,27 +53,27 @@ void	ft_drawing_line(t_fractol *p, int *dot1, int *dot2)
 			data.error += data.deltax;
 			data.tmp[1] += data.sign_y;
 		}
-		data.n  += 1;
+		data.n += 1;
 	}
 }
 
-void	ft_drawing_line_dot(t_fractol *p, t_dot *dot1, t_dot *dot2)
+void		ft_drawing_line_dot(t_fractol *p, t_dot *dot1, t_dot *dot2)
 {
 	t_dot	tmp;
 	double	deltax;
 	double	deltay;
 	int		step;
 	int		n;
-  
+
 	deltax = dot2->x - dot1->x;
 	deltay = dot2->y - dot1->y;
-	step =(ABS(deltax) >= ABS(deltay)) ? ABS(deltax) : ABS(deltay);
+	step = (ABS(deltax) >= ABS(deltay)) ? ABS(deltax) : ABS(deltay);
 	deltax = deltax / step;
 	deltay = deltay / step;
 	tmp.x = dot1->x;
 	tmp.y = dot1->y;
 	n = 0;
-	while(n <= step)
+	while (n <= step)
 	{
 		tmp.color = ft_pixel_color(dot1->color, dot2->color, step, n);
 		if ((int)tmp.x >= 0 && (int)tmp.x <= (WIDHT - 2) \

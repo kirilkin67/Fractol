@@ -36,7 +36,6 @@ static int	ft_pixel_color_alfa(double max_speed, double speed)
 		per = (speed - max_speed * 0.75) / (max_speed * (0.875 - 0.75));
 	else
 		per = (speed - max_speed * 0.875) / (max_speed * 0.125);
-
 	red = (int)(9 * (1 - per) * pow(per, 3) * 255);
 	green = (int)(15 * pow((1 - per), 2) * pow(per, 2) * 255);
 	blue = (int)(8.5 * pow((1 - per), 3) * per * 255);
@@ -45,9 +44,9 @@ static int	ft_pixel_color_alfa(double max_speed, double speed)
 
 int			function_color(t_fractol *data, int speed)
 {
-	int	color;
-	int	max_iter;
-	
+	int color;
+	int max_iter;
+
 	color = 0x0;
 	max_iter = data->num_iter;
 	if (data->color_function == 1)

@@ -73,8 +73,7 @@ int		key_press(int key, t_fractol *p)
 		color_key(key, p);
 	if (key == NUM_KEY_PLUS || key == NUM_KEY_MINUS)
 		iteration_key(key, p);
-	if (key == KEY_DOWN || key == KEY_UP || \
-		key == KEY_LEFT || key == KEY_RIGHT)
+	if (key == KEY_DOWN || key == KEY_UP || key == KEY_LEFT || key == KEY_RIGHT)
 		shift_key(key, p);
 	if ((key == KEY_SPACE || key == KEY_J || key == KEY_M || key == KEY_S) \
 		&& p->type_fractal != 0)
