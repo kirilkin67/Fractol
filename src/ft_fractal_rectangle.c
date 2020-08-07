@@ -1,10 +1,9 @@
 #include "../includes/fractol.h"
 
-void	ft_parametr_rectangle(t_fractol *p, char *s1, char *s2)
+void		ft_parametr_rectangle(t_fractol *p, char *s1, char *s2)
 {
 	p->side_w = ft_atoi(s1);
 	p->side_h = ft_atoi(s2);
-	// p->side_z = paint.side_w;
 	p->width = p->side_w + 200;
 	p->hight = p->side_h + 200;
 	p->x0 = 100;
@@ -14,14 +13,16 @@ void	ft_parametr_rectangle(t_fractol *p, char *s1, char *s2)
 	p->type_fractal = 0;
 }
 
-void	ft_point_coordinates(t_fractol *p)
+void		ft_point_coordinates(t_fractol *p)
 {
 	int n;
 	int x;
 	int y;
-	int x0 = p->width / 2;
-	int y0 = p->hight / 2;
+	int x0;
+	int y0;
 
+	x0 = p->width / 2;
+	y0 = p->hight / 2;
 	n = 0;
 	while (n < 4)
 	{
@@ -29,8 +30,10 @@ void	ft_point_coordinates(t_fractol *p)
 		p->rectangle[n][1] = p->y0 + n / 2 * p->side_h;
 		x = p->rectangle[n][0];
 		y = p->rectangle[n][1];
-	p->rectangle[n][0] = x0 + (x-x0) * cos(p->k_look) - (y-y0) * sin(p->k_look);
-	p->rectangle[n][1] = y0 + (y-y0) * cos(p->k_look) + (x-x0) * sin(p->k_look);
+		p->rectangle[n][0] = x0 + (x - x0) * cos(p->k_look)\
+							- (y - y0) * sin(p->k_look);
+		p->rectangle[n][1] = y0 + (y - y0) * cos(p->k_look)\
+							+ (x - x0) * sin(p->k_look);
 		n += 1;
 	}
 }

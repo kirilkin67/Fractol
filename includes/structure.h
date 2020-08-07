@@ -9,28 +9,7 @@ typedef struct	s_dot
 	int			color;
 }				t_dot;
 
-// typedef struct	s_data
-// {
-// 	int			n;
-// 	int			x;
-// 	int			y_start;
-// 	int			y_end;
-// 	int			color;
-// 	int			flag_color;
-// 	double		zoom;
-// 	double		delta_x_re;
-// 	double		new_re;
-// 	double		new_im;
-// 	double		x_re_min;
-// 	double		y_im_max;
-// 	double		c_re;
-// 	double		c_im;
-// 	int			num;
-// 	void		*mlx_ptr;
-// 	int			**draw_t;
-// }				t_data;
-
-typedef struct s_paint
+typedef struct	s_paint
 {
 	void		*mlx_ptr;
 	void		*win_ptr;

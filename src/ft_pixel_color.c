@@ -60,24 +60,3 @@ int			function_color(t_fractol *data, int speed)
 	}
 	return (color);
 }
-
-// static int	ft_pixel_color_betta(t_fractol *data, int max_speed, int speed)
-// {
-// 	int	color;
-
-// 	if (speed == max_speed)
-// 		color = 0x0;
-// 	else
-// 		color = mlx_get_color_value(data->mlx_ptr, speed * data->color);
-// 	return (color);
-// }
-
-// static int	color_alfa(double per)
-// {
-// 	t_color	pixel;
-
-// 	pixel.red = (int)(9 * (1 - per) * pow(per, 3) * 255);
-// 	pixel.green = (int)(15 * pow((1 - per), 2) * pow(per, 2) * 255);
-// 	pixel.blue = (int)(8.5 * pow((1 - per), 3) * per * 255);
-// 	return ((pixel.red << 16) | (pixel.green << 8) | pixel.blue);
-// }
