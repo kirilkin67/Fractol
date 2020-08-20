@@ -2,8 +2,12 @@
 
 void		ft_exit(void)
 {
-	ft_putendl("Usage: ./fractol <name fractol> \nfractals :\n--> Julia\
-	\n--> Mandelbrota\n--> Rectangle widht(100-1000) hight(100-1000)");
+	ft_putendl("Usage: ./fractol <name fractol>\
+	\nfractals :\
+	\n--> Julia\
+	\n--> Symmetry\
+	\n--> Mandelbrota\
+	\n--> Rectangle widht(100-1000) hight(100-1000)");
 	exit(1);
 }
 
@@ -14,6 +18,7 @@ void		ft_operation(t_fractol *p)
 	mlx_hook(p->win_ptr, 4, (1L << 2), mouse_press, p);
 	mlx_hook(p->win_ptr, 6, (1L << 6), mouse_movement, p);
 	mlx_hook(p->win_ptr, 12, (1L << 15), expose_hook, p);
+	mlx_loop(p->mlx_ptr);
 }
 
 static void	ft_mlx_rectangle(t_fractol *p, char *str)
@@ -25,34 +30,22 @@ static void	ft_mlx_rectangle(t_fractol *p, char *str)
 			&p->size_line, &p->endian);
 	ft_paint_rectangle(p);
 	ft_operation(p);
-	mlx_loop(p->mlx_ptr);
 }
 
 int			main(int argc, char **argv)
 {
 	t_fractol	paint;
-	t_fractol	paint1;
-	void		*mlx_ptr;
+	// t_fractol	paint1;
 
 	if (argc == 1)
-	{
-		mlx_ptr = mlx_init();
-		ft_paint_fractal(mlx_ptr, &paint, "Julia");
-		mlx_loop(mlx_ptr);
-	}
+		ft_paint_fractal(&paint, "Julia");
 	if (argc == 2)
-	{
-		mlx_ptr = mlx_init();
-		ft_paint_fractal(mlx_ptr, &paint, *(argv + 1));
-		mlx_loop(mlx_ptr);
-	}
-	if (argc == 3)
-	{
-		mlx_ptr = mlx_init();
-		ft_paint_fractal(mlx_ptr, &paint, *(argv + 1));
-		ft_paint_fractal(mlx_ptr, &paint1, *(argv + 2));
-		mlx_loop(mlx_ptr);
-	}
+		ft_paint_fractal(&paint, *(argv + 1));
+	// if (argc == 3)
+	// {
+	// 	ft_paint_fractal(&paint, *(argv + 1));
+	// 	ft_paint_fractal(&paint1, *(argv + 2));
+	// }
 	if (argc == 4 && (ft_strcmp(argv[1], "Rectangle") == 0) && \
 		ft_atoi(argv[2]) > 99 && ft_atoi(argv[2]) < 1001 && \
 		ft_atoi(argv[3]) > 99 && ft_atoi(argv[3]) < 1001)

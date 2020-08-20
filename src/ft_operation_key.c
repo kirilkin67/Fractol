@@ -38,7 +38,7 @@ void	color_key(int key, t_fractol *p)
 		p->color += 3000;
 	else if (key == KEY_E && p->color > 10000)
 		p->color -= 2000;
-	fractal_type_image_selection(p);
+	ft_paint_image(p);
 }
 
 void	iteration_key(int key, t_fractol *p)
@@ -47,7 +47,7 @@ void	iteration_key(int key, t_fractol *p)
 		p->num_iter += 20;
 	if (key == NUM_KEY_MINUS && p->num_iter > 40)
 		p->num_iter -= 20;
-	fractal_type_image_selection(p);
+	ft_paint_image(p);
 }
 
 void	shift_key(int key, t_fractol *p)
@@ -60,7 +60,7 @@ void	shift_key(int key, t_fractol *p)
 		p->y_im_max += 30 * p->delta_x_re / WIDHT;
 	else if (key == KEY_UP)
 		p->y_im_max -= 30 * p->delta_x_re / WIDHT;
-	fractal_type_image_selection(p);
+	ft_paint_image(p);
 }
 
 int		key_press(int key, t_fractol *p)
@@ -87,7 +87,7 @@ int		key_press(int key, t_fractol *p)
 			ft_parametr_julia(p);
 			p->type_fractal = SYMMETRY;
 		}
-		fractal_type_image_selection(p);
+		ft_paint_image(p);
 	}
 	return (0);
 }

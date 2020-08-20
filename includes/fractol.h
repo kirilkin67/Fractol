@@ -62,12 +62,9 @@ int		ft_mandelbrot_check(int num, double c_re, double c_im);
 int		ft_julia_check(t_fractol *data, double new_re, double new_im);
 int		ft_symmetry_check(t_fractol *data, double new_re, double new_im);
 void	ft_parametr_mandelbrota(t_fractol *p);
-void	ft_paint_mandelbrota(t_fractol *p);
 void	ft_parametr_julia(t_fractol *p);
-void	ft_paint_julia(t_fractol *p);
-void	ft_paint_fractal(void *mlx_ptr, t_fractol *p, char *str);
-void	ft_paint_symmetry(t_fractol *p);
-void	fractal_type_image_selection(t_fractol *p);
+void	ft_paint_fractal(t_fractol *p, char *str);
+void	ft_paint_image(t_fractol *p);
 void	ft_multi_thread(t_fractol *paint);
 
 #endif

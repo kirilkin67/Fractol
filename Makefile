@@ -2,6 +2,8 @@ NAME = fractol
 
 CC = gcc
 
+OS = $(shell uname)
+
 SRC_DIR = ./src/
 SRC_LIST = main.c ft_paint_fractal.c \
 	ft_drawing_line.c ft_fractal_rectangle.c \

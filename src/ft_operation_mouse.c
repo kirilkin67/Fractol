@@ -1,15 +1,5 @@
 #include "../includes/fractol.h"
 
-void	fractal_type_image_selection(t_fractol *p)
-{
-	if (p->type_fractal == MANDELBROT)
-		ft_paint_mandelbrota(p);
-	if (p->type_fractal == JULIA)
-		ft_paint_julia(p);
-	if (p->type_fractal == SYMMETRY)
-		ft_paint_symmetry(p);
-}
-
 void	zoom_mouse(int key, t_fractol *p)
 {
 	double	delta_y;
@@ -27,7 +17,7 @@ void	zoom_mouse(int key, t_fractol *p)
 		p->delta_x_re *= K_ZOOM;
 	p->x_re_min += ((tmp - p->delta_x_re) * p->alfa_x);
 	p->y_im_max -= ((delta_y - p->delta_x_re / k_wind) * p->alfa_y);
-	fractal_type_image_selection(p);
+	ft_paint_image(p);
 }
 
 int		mouse_press(int button, int x, int y, t_fractol *p)
@@ -70,10 +60,7 @@ int		mouse_movement(int x, int y, t_fractol *p)
 		{
 			p->const_re = (((double)x - widht / 2) / widht) * 2;
 			p->const_im = (hight / 2 - (double)y) / hight;
-			if (p->type_fractal == JULIA)
-				ft_paint_julia(p);
-			if (p->type_fractal == SYMMETRY)
-				ft_paint_symmetry(p);
+			ft_paint_image(p);
 		}
 	}
 	return (0);
