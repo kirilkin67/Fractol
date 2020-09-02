@@ -8,6 +8,7 @@ int		close_endian(void *param)
 
 int		expose_hook(t_fractol *p)
 {
+	mlx_do_sync(p->mlx_ptr);
 	mlx_put_image_to_window(p->mlx_ptr, p->win_ptr, p->img_ptr, 0, 0);
 	ft_print_instructions(p);
 	return (1);
