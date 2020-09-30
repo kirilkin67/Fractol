@@ -30,7 +30,9 @@ int		ft_mandelbrot_check(int num_iter, double c_re, double c_im)
 	{
 		tmp = z_re;
 		z_re = z_re * z_re - z_im * z_im + c_re;
+		// z_re = z_re * z_re - z_im * z_im + tan(z_re * z_re - z_im * z_im);
 		z_im = 2 * tmp * z_im + c_im;
+		// z_im = 2 * tmp * z_im + tan(2 * tmp * z_im);
 		orbit = z_re * z_re + z_im * z_im;
 		iter += 1;
 	}
